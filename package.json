@@ -1,24 +1,25 @@
 {
   "name": "vue-composition-sample",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
+    "format": "prettier --write --list-different .",
     "lint:js": "eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
     "lint:style": "stylelint \"**/*.{css,scss,sass,html,vue}\" --ignore-path .gitignore",
     "lint:prettier": "prettier --check .",
     "lint": "yarn lint:js && yarn lint:style && yarn lint:prettier",
-    "lintfix": "prettier --write --list-different . && yarn lint:js --fix && yarn lint:style --fix",
+    "lint:fix": "yarn lint:js --fix && yarn lint:style --fix && yarn format",
     "prepare": "husky install",
     "test": "jest"
   },
   "lint-staged": {
-    "*.{js,ts,vue}": "eslint --cache",
-    "*.{css,scss,sass,html,vue}": "stylelint",
-    "*.**": "prettier --check --ignore-unknown"
+    "*.{js,ts,vue}": "yarn lint:js --fix",
+    "*.{css,scss,sass,html,vue}": "yarn lint:style --fix",
+    "*.**": "yarn format"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
