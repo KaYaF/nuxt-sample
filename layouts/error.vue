@@ -10,8 +10,10 @@
   </v-app>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import {defineComponent, useMeta} from '@nuxtjs/composition-api';
+
+export default defineComponent({
   name: 'EmptyLayout',
   layout: 'empty',
   props: {
@@ -20,20 +22,20 @@ export default {
       default: null,
     },
   },
-  data() {
+  setup(props) {
+    const pageNotFound = '404 Not Found';
+    const otherError = 'An error occurred';
+
+    useMeta({
+      title: props.error.statusCode === 404 ? pageNotFound : otherError,
+    });
+
     return {
       pageNotFound: '404 Not Found',
       otherError: 'An error occurred',
     };
   },
-  head() {
-    const title =
-      this.error.statusCode === 404 ? this.pageNotFound : this.otherError;
-    return {
-      title,
-    };
-  },
-};
+});
 </script>
 
 <style scoped>
