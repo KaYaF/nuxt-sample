@@ -19,7 +19,7 @@
   "lint-staged": {
     "*.{js,ts,vue}": "yarn lint:js --fix",
     "*.{css,scss,sass,html,vue}": "yarn lint:style --fix",
-    "*.**": "yarn format"
+    "*": "yarn format"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
