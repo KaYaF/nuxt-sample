@@ -17,5 +17,6 @@ module.exports = {
     '@typescript-eslint/no-empty-function': 'off',
     'no-useless-constructor': 'off',
     'vue/multi-word-component-names': 'off',
+    eqeqeq: ['error', 'smart'],
   },
 };
