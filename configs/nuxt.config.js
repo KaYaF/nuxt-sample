@@ -31,7 +31,7 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/stylelint
-    '@nuxtjs/stylelint-module',
+    ['@nuxtjs/stylelint-module', {configFile: './configs/stylelint.config.js'}],
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
     // https://composition-api.nuxtjs.org/
