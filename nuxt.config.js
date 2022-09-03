@@ -71,4 +71,9 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  // Allow access by IP
+  server: {
+    host: '0.0.0.0',
+  },
 };
