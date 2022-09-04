@@ -5,10 +5,16 @@ test.beforeEach(async ({page}) => {
   await page.waitForLoadState('load');
 });
 
-test(`visual regression test`, async ({page, browserName, viewport}) => {
+test(`visual regression test`, async ({
+  page,
+  browserName,
+  viewport,
+}, testinfo) => {
+  testinfo.snapshotSuffix = '';
+
   await expect(page).toHaveScreenshot(
     ['visualRegressionTest', `${browserName}-width-${viewport?.width}.png`],
-    {fullPage: true}
+    {fullPage: true, maxDiffPixelRatio: 0.05}
   );
 
   page.close();
