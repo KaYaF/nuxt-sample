@@ -1,4 +1,38 @@
 import {PlaywrightTestConfig, devices} from '@playwright/test';
+import {viewports} from './displaySize';
+
+const projects = Array(3 * viewports.length);
+
+for (let i = 0; i < viewports.length; i++) {
+  const viewport = viewports[i];
+
+  const shareProps = {
+    viewport,
+    // headless: false,
+  };
+
+  projects[3 * i] = {
+    name: 'chromium',
+    use: {
+      ...devices['Desktop Chrome'],
+      ...shareProps,
+    },
+  };
+  projects[3 * i + 1] = {
+    name: 'firefox',
+    use: {
+      ...devices['Desktop Firefox'],
+      ...shareProps,
+    },
+  };
+  projects[3 * i + 2] = {
+    name: 'webkit',
+    use: {
+      ...devices['Desktop Safari'],
+      ...shareProps,
+    },
+  };
+}
 
 /**
  * Read environment variables from file.
@@ -42,56 +76,7 @@ const config: PlaywrightTestConfig = {
   },
 
   /* Configure projects for major browsers */
-  projects: [
-    {
-      name: 'chromium',
-      use: {
-        ...devices['Desktop Chrome'],
-      },
-    },
-
-    {
-      name: 'firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-      },
-    },
-
-    {
-      name: 'webkit',
-      use: {
-        ...devices['Desktop Safari'],
-      },
-    },
-
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: {
-    //     ...devices['Pixel 5'],
-    //   },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: {
-    //     ...devices['iPhone 12'],
-    //   },
-    // },
-
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: {
-    //     channel: 'msedge',
-    //   },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: {
-    //     channel: 'chrome',
-    //   },
-    // },
-  ],
+  projects,
 
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
   // outputDir: 'test-results/',

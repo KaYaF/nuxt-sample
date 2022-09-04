@@ -1,12 +1,14 @@
 import {test, expect} from '@playwright/test';
 
-test('take a visual regression sample', async ({page, browserName}) => {
+test(`visual regression test`, async ({page, browserName, viewport}) => {
   await page.goto('http://localhost:8080');
-  await page.waitForNavigation();
+  await page.waitForLoadState('load');
+  await page.waitForTimeout(1000); // some pages don't display the page when the `load` is dispatched.
 
   await expect(page).toHaveScreenshot(
-    ['visualRegressionTest', `picture-${browserName}.png`],
+    ['visualRegressionTest', `${browserName}-width-${viewport?.width}.png`],
     {fullPage: true}
   );
+
   page.close();
 });
