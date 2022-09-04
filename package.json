@@ -12,14 +12,17 @@
     "eslint": "eslint --ignore-path .gitignore . -c ./configs/.eslintrc.js",
     "stylelint": "stylelint --ignore-path .gitignore --config ./configs/stylelint.config.js",
     "commitlint": "commitlint -g ./configs/commitlint.config.js",
-    "playwright:test": "playwright test --config ./configs/playwright.config.ts",
+    "playwright:unit": "playwright test --config ./configs/playwright.unit.config.ts",
+    "playwright:e2e": "playwright test --config ./configs/playwright.e2e.config.ts",
     "format": "yarn prettier --write --list-different .",
     "lint:js": "yarn eslint --ext \".js,.ts,.vue\"",
     "lint:style": "yarn stylelint \"**/*.{css,scss,sass,html,vue}\"",
     "lint:prettier": "yarn prettier --check .",
     "lint": "yarn lint:js && yarn lint:style && yarn lint:prettier",
     "lint:fix": "yarn lint:js --fix && yarn lint:style --fix && yarn format",
-    "test": "yarn playwright:test"
+    "test": "yarn test:unit && yarn test:e2e",
+    "test:unit": "yarn playwright:unit",
+    "test:e2e": "yarn playwright:e2e"
   },
   "lint-staged": {
     "*.{js,ts,vue}": "yarn lint:js --fix",

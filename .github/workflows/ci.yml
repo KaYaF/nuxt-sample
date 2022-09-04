@@ -49,4 +49,7 @@ jobs:
         run: yarn lint
 
       - name: Run tests 🧪
-        run: yarn test
+        run: yarn test:unit
+
+        # e2e tests may exceed free plan limits
+        # run: yarn test
