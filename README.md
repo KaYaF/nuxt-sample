@@ -1,4 +1,4 @@
-# vue-composition-sample
+# nuxt-sample
 
 ## Build Setup
 
