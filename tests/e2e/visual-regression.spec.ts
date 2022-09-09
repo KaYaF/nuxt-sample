@@ -14,7 +14,7 @@ test(`visual regression test`, async ({
 
   await expect(page).toHaveScreenshot(
     ['visualRegressionTest', `${browserName}-width-${viewport?.width}.png`],
-    {fullPage: true, maxDiffPixelRatio: 0.05}
+    {maxDiffPixelRatio: 0.05}
   );
 
   page.close();

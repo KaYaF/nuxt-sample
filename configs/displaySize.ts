@@ -6,25 +6,25 @@ interface Viewport {
 const viewports: Viewport[] = [
   {
     width: 2048,
-    height: 1536,
+    height: 2000,
   },
   {
     width: 1280,
-    height: 720,
+    height: 2000,
   },
   {
     width: 1024,
-    height: 768,
+    height: 2000,
   },
   {
     // iPad mini
     width: 768,
-    height: 1024,
+    height: 2000,
   },
   {
     // iPhone SR
     width: 375,
-    height: 667,
+    height: 2000,
   },
 ];
 
