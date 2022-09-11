@@ -46,13 +46,13 @@ for (let i = 0; i < viewports.length; i++) {
 const config: PlaywrightTestConfig = {
   testDir: './../tests',
   /* Maximum time one test can run for. */
-  timeout: 1000 * 1000,
+  timeout: 30 * 60 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
      * For example in `await expect(locator).toHaveText();`
      */
-    timeout: 5000,
+    timeout: 5 * 60 * 1000,
   },
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -85,7 +85,7 @@ const config: PlaywrightTestConfig = {
   webServer: {
     command: 'yarn build && yarn start -p 8080',
     port: 8080,
-    timeout: 600 * 1000,
+    timeout: 5 * 60 * 1000,
   },
 };
 
