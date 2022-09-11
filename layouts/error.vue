@@ -14,8 +14,8 @@
 import {defineComponent, useMeta} from '@nuxtjs/composition-api';
 
 export default defineComponent({
-  name: 'EmptyLayout',
-  layout: 'empty',
+  name: 'ErrorLayout',
+  layout: 'error',
   props: {
     error: {
       type: Object,
@@ -35,6 +35,7 @@ export default defineComponent({
       otherError: 'An error occurred',
     };
   },
+  head: {},
 });
 </script>
 

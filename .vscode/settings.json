@@ -1,5 +1,12 @@
 {
-  "cSpell.words": ["commitlint", "nuxt", "stylelint"],
+  "cSpell.words": [
+    "commitlint",
+    "dirents",
+    "nuxt",
+    "stylelint",
+    "testinfo",
+    "viewports"
+  ],
   "prettier.configPath": "./configs/.prettierrc",
   "playwright.env": {
     "configPath": "./configs/playwright.config.ts"
