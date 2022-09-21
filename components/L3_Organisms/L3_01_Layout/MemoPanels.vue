@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import {defineComponent} from '@nuxtjs/composition-api';
-import MemoPanel from '../L3_02_Item/MemoPanel.vue';
+import MemoPanel from '../L3_02_Item/L3_02_01_Memo/MemoPanel.vue';
 
 export default defineComponent({
   name: 'MemoPanels',
