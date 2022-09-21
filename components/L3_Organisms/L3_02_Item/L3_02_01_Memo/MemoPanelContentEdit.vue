@@ -1,49 +1,54 @@
 <template>
   <div class="memo-panel-content-edit">
-    <div class="memo-panel-content">(edit) {{ content }}</div>
-    <div class="memo-panel-footer">
-      <v-row>
-        <v-spacer />
-        <v-col cols="1">
-          <MdiIconButton
-            icon-name="note-edit-outline"
-            @onClick="changeEditMode"
-          />
-        </v-col>
-        <v-col cols="1">
-          <MdiIconButton
-            icon-name="delete-outline"
-            color-mode="red"
-            @onClick="deleteMemo"
-          />
-        </v-col>
-      </v-row>
+    <div class="memo-panel-content">
+      <title-small text="title:" />
+      <v-text-field
+        v-model="titleEdit"
+        outlined
+        placeholder="input title"
+        single-line
+      />
+
+      <title-small text="content:" />
+      <v-textarea v-model="contentEdit" outlined placeholder="input content" />
+    </div>
+    <div class="memo-panel-footer d-flex justify-end mb-2">
+      <TextButton class="px-2" @onClick="updateMemo"> Edit </TextButton>
+      <TextButton class="px-2" color="accent" @onClick="cancel">
+        Cancel
+      </TextButton>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from '@nuxtjs/composition-api';
-import MdiIconButton from '~/components/L1_Atom/L1_02_Button/MdiIconButton.vue';
+import {defineComponent, ref} from '@nuxtjs/composition-api';
+import TextButton from '~/components/L1_Atom/L1_02_Button/TextButton.vue';
+import TitleSmall from '~/components/L1_Atom/L1_03_Text/TitleSmall.vue';
 
 export default defineComponent({
   name: 'MemoPanelContentEdit',
-  components: {MdiIconButton},
+  components: {TextButton, TitleSmall},
   props: {
+    title: {
+      type: String,
+      required: true,
+    },
     content: {
       type: String,
       required: true,
     },
   },
-  setup(_props, context) {
-    const changeEditMode = () => {
-      context.emit('setEditMode', false);
-    };
-    const deleteMemo = () => {
-      context.emit('deleteMemo');
-    };
+  setup(props, context) {
+    const titleEdit = ref<string>(props.title);
+    const contentEdit = ref<string>(props.content);
 
-    return {changeEditMode, deleteMemo};
+    const updateMemo = () =>
+      context.emit('updateMemo', titleEdit.value, contentEdit.value);
+
+    const cancel = () => context.emit('cancel');
+
+    return {titleEdit, contentEdit, updateMemo, cancel};
   },
 });
 </script>

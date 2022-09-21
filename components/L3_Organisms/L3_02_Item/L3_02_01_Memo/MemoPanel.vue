@@ -2,14 +2,15 @@
   <div class="memo-panel">
     <v-expansion-panel>
       <!-- use L1 and L2 later -->
-      <v-expansion-panel-header> memo: title </v-expansion-panel-header>
+      <v-expansion-panel-header> {{ title }} </v-expansion-panel-header>
 
       <v-expansion-panel-content>
         <MemoPanelContentEdit
           v-if="isEdit"
+          :title="title"
           :content="content"
-          @setEditMode="setEditMode"
-          @deleteMemo="deleteMemo"
+          @updateMemo="updateMemo"
+          @cancel="setEditMode(false)"
         >
         </MemoPanelContentEdit>
         <MemoPanelContentDefault
@@ -40,7 +41,13 @@ export default defineComponent({
   },
   setup(props) {
     const isEdit = ref<boolean>(false);
-    const content = ref<string>('memo: content');
+    const title = 'memo: title';
+    const content = 'memo: content';
+
+    const updateMemo = (title: string, content: string) => {
+      console.log('updateMemo', props.index, title, content);
+      isEdit.value = false;
+    };
 
     const setEditMode = (isEditMode: boolean) => {
       isEdit.value = isEditMode;
@@ -52,7 +59,9 @@ export default defineComponent({
 
     return {
       isEdit,
+      title,
       content,
+      updateMemo,
       setEditMode,
       deleteMemo,
     };
