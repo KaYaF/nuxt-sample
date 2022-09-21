@@ -5,51 +5,57 @@
       <v-expansion-panel-header> memo: title </v-expansion-panel-header>
 
       <v-expansion-panel-content>
-        This is the {{ index }}-th memo.<br />
-        We can get the props and returned properties of the setup method.<br />
-        <br />
-        Test: squared index number is {{ squaredIndex }}
-        <v-row>
-          <v-spacer />
-          <v-col cols="1">
-            <MdiIconButton icon-name="note-edit-outline" @onClick="editMemo" />
-          </v-col>
-          <v-col cols="1">
-            <MdiIconButton
-              icon-name="delete-outline"
-              color-mode="red"
-              @onClick="deleteMemo"
-            />
-          </v-col>
-        </v-row>
+        <MemoPanelContentEdit
+          v-if="isEdit"
+          :content="content"
+          @setEditMode="setEditMode"
+          @deleteMemo="deleteMemo"
+        >
+        </MemoPanelContentEdit>
+        <MemoPanelContentDefault
+          v-else
+          :content="content"
+          @changeToEditMode="setEditMode(true)"
+          @deleteMemo="deleteMemo"
+        >
+        </MemoPanelContentDefault>
       </v-expansion-panel-content>
     </v-expansion-panel>
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from '@nuxtjs/composition-api';
-import MdiIconButton from '~/components/L1_Atom/L1_02_Button/MdiIconButton.vue';
+import {defineComponent, ref} from '@nuxtjs/composition-api';
+import MemoPanelContentDefault from './MemoPanelContentDefault.vue';
+import MemoPanelContentEdit from './MemoPanelContentEdit.vue';
 
 export default defineComponent({
   name: 'MemoPanel',
-  components: {MdiIconButton},
+  components: {MemoPanelContentDefault, MemoPanelContentEdit},
   props: {
     index: {
       type: Number,
       required: true,
     },
   },
-  setup(props, context) {
-    const editMemo = (e: PointerEvent) => {
-      console.log('editMemo');
+  setup(props) {
+    const isEdit = ref<boolean>(false);
+    const content = ref<string>('memo: content');
+
+    const setEditMode = (isEditMode: boolean) => {
+      isEdit.value = isEditMode;
     };
 
-    const deleteMemo = (e: PointerEvent) => {
-      console.log('deleteMemo');
+    const deleteMemo = () => {
+      console.log('deleteMemo', props.index);
     };
 
-    return {squaredIndex: Math.pow(props.index, 2), editMemo, deleteMemo};
+    return {
+      isEdit,
+      content,
+      setEditMode,
+      deleteMemo,
+    };
   },
 });
 </script>
