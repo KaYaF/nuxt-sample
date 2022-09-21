@@ -1,16 +1,16 @@
 <template>
-  <div class="memo-card">
-    <v-card>
+  <div class="memo-panel">
+    <v-expansion-panel>
       <!-- use L1 and L2 later -->
-      <v-card-title> memo: title </v-card-title>
-      <v-divider class="mx-4"></v-divider>
-      <v-card-text>
+      <v-expansion-panel-header> memo: title </v-expansion-panel-header>
+
+      <v-expansion-panel-content>
         This is the {{ index }}-th memo.<br />
         We can get the props and returned properties of the setup method.<br />
         <br />
         Test: squared index number is {{ squaredIndex }}
-      </v-card-text>
-    </v-card>
+      </v-expansion-panel-content>
+    </v-expansion-panel>
   </div>
 </template>
 
@@ -18,7 +18,7 @@
 import {defineComponent} from '@nuxtjs/composition-api';
 
 export default defineComponent({
-  name: 'MemoCard',
+  name: 'MemoPanel',
   props: {
     index: {
       type: Number,

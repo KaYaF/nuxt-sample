@@ -1,16 +1,16 @@
 <template>
   <div class="memo-template">
-    <MemoCards />
+    <MemoPanels />
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from '@nuxtjs/composition-api';
-import MemoCards from '~/components/L3_Organisms/L3_01_Layout/MemoCards.vue';
+import MemoPanels from '~/components/L3_Organisms/L3_01_Layout/MemoPanels.vue';
 
 export default defineComponent({
   name: 'MemoTemplate',
-  components: {MemoCards},
+  components: {MemoPanels},
   setup() {},
 });
 </script>
