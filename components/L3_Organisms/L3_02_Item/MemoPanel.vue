@@ -9,6 +9,19 @@
         We can get the props and returned properties of the setup method.<br />
         <br />
         Test: squared index number is {{ squaredIndex }}
+        <v-row>
+          <v-spacer />
+          <v-col cols="1">
+            <MdiIconButton icon-name="note-edit-outline" @onClick="editMemo" />
+          </v-col>
+          <v-col cols="1">
+            <MdiIconButton
+              icon-name="delete-outline"
+              color-mode="red"
+              @onClick="deleteMemo"
+            />
+          </v-col>
+        </v-row>
       </v-expansion-panel-content>
     </v-expansion-panel>
   </div>
@@ -16,9 +29,11 @@
 
 <script lang="ts">
 import {defineComponent} from '@nuxtjs/composition-api';
+import MdiIconButton from '~/components/L1_Atom/L1_02_Button/MdiIconButton.vue';
 
 export default defineComponent({
   name: 'MemoPanel',
+  components: {MdiIconButton},
   props: {
     index: {
       type: Number,
@@ -26,7 +41,15 @@ export default defineComponent({
     },
   },
   setup(props, context) {
-    return {squaredIndex: Math.pow(props.index, 2)};
+    const editMemo = (e: PointerEvent) => {
+      console.log('editMemo');
+    };
+
+    const deleteMemo = (e: PointerEvent) => {
+      console.log('deleteMemo');
+    };
+
+    return {squaredIndex: Math.pow(props.index, 2), editMemo, deleteMemo};
   },
 });
 </script>
