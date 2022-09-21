@@ -5,21 +5,23 @@
       <v-expansion-panel-header> {{ title }} </v-expansion-panel-header>
 
       <v-expansion-panel-content>
-        <MemoPanelContentEdit
-          v-if="isEdit"
-          :title="title"
-          :content="content"
-          @updateMemo="updateMemo"
-          @cancel="setEditMode(false)"
-        >
-        </MemoPanelContentEdit>
-        <MemoPanelContentDefault
-          v-else
-          :content="content"
-          @changeToEditMode="setEditMode(true)"
-          @deleteMemo="deleteMemo"
-        >
-        </MemoPanelContentDefault>
+        <v-expand-transition>
+          <MemoPanelContentEdit
+            v-if="isEdit"
+            :title="title"
+            :content="content"
+            @updateMemo="updateMemo"
+            @cancel="setEditMode(false)"
+          >
+          </MemoPanelContentEdit>
+          <MemoPanelContentDefault
+            v-else
+            :content="content"
+            @changeToEditMode="setEditMode(true)"
+            @deleteMemo="deleteMemo"
+          >
+          </MemoPanelContentDefault>
+        </v-expand-transition>
       </v-expansion-panel-content>
     </v-expansion-panel>
   </div>
