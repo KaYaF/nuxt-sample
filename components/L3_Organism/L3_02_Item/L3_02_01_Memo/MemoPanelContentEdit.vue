@@ -56,7 +56,7 @@ export default defineComponent({
     const updateMemo = () => {
       editFormRef.value?.validate().then((success: boolean) => {
         if (success) {
-          context.emit('updateMemo', memoEdit.value);
+          context.emit('updateMemo', Object.assign({}, memoEdit.value));
         }
       });
     };
