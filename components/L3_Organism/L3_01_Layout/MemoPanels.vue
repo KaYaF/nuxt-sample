@@ -6,7 +6,7 @@
           <MemoPanel
             :index="index"
             :memo="memo"
-            @updateMemo="updateMemo"
+            @updateMemo="editMemo"
             @deleteMemo="deleteMemo"
           />
         </v-col>
@@ -30,15 +30,15 @@ export default defineComponent({
     },
   },
   setup(_props, context) {
-    const updateMemo = (memo: Memo, index: number) => {
-      context.emit('updateMemo', memo, index);
+    const editMemo = (memo: Memo, index: number) => {
+      context.emit('editMemo', memo, index);
     };
 
     const deleteMemo = (index: number) => {
       context.emit('deleteMemo', index);
     };
 
-    return {updateMemo, deleteMemo};
+    return {editMemo, deleteMemo};
   },
 });
 </script>
