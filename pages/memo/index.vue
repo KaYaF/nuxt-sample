@@ -1,6 +1,10 @@
 <template>
   <div class="memo-page">
-    <MemoTemplate :memos="memos" @deleteMemo="deleteMemo" />
+    <MemoTemplate
+      :memos="memos"
+      @updateMemo="updateMemo"
+      @deleteMemo="deleteMemo"
+    />
   </div>
 </template>
 
@@ -22,6 +26,9 @@ export default defineComponent({
         content: `memo: content ${i}`,
       };
     }
+    const updateMemo = (memo: Memo, index: number) => {
+      Object.assign(memos.value[index], memo);
+    };
 
     const deleteMemo = (index: number) => {
       memos.value.splice(index, 1);
@@ -29,6 +36,7 @@ export default defineComponent({
 
     return {
       memos,
+      updateMemo,
       deleteMemo,
     };
   },

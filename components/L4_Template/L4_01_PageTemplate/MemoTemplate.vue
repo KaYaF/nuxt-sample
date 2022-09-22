@@ -1,6 +1,10 @@
 <template>
   <div class="memo-template">
-    <MemoPanels :memos="memos" @deleteMemo="deleteMemo" />
+    <MemoPanels
+      :memos="memos"
+      @updateMemo="updateMemo"
+      @deleteMemo="deleteMemo"
+    />
   </div>
 </template>
 
@@ -19,11 +23,15 @@ export default defineComponent({
     },
   },
   setup(_props, context) {
+    const updateMemo = (memo: Memo, index: number) => {
+      context.emit('updateMemo', memo, index);
+    };
+
     const deleteMemo = (index: number) => {
       context.emit('deleteMemo', index);
     };
 
-    return {deleteMemo};
+    return {updateMemo, deleteMemo};
   },
 });
 </script>

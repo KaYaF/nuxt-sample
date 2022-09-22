@@ -49,7 +49,7 @@ export default defineComponent({
     const isEdit = ref<boolean>(false);
 
     const updateMemo = (memo: Memo) => {
-      console.log('updateMemo', memo);
+      context.emit('updateMemo', memo, props.index);
       isEdit.value = false;
     };
 
