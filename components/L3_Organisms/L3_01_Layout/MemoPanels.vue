@@ -3,7 +3,7 @@
     <v-expansion-panels multiple>
       <v-row justify="center" class="py-3">
         <v-col v-for="(memo, index) in memos" :key="index" cols="12">
-          <MemoPanel :index="index" :memo="memo" />
+          <MemoPanel :index="index" :memo="memo" @deleteMemo="deleteMemo" />
         </v-col>
       </v-row>
     </v-expansion-panels>
@@ -24,6 +24,12 @@ export default defineComponent({
       required: true,
     },
   },
-  setup() {},
+  setup(_props, context) {
+    const deleteMemo = (index: number) => {
+      context.emit('deleteMemo', index);
+    };
+
+    return {deleteMemo};
+  },
 });
 </script>

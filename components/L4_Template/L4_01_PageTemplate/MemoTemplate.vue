@@ -1,6 +1,6 @@
 <template>
   <div class="memo-template">
-    <MemoPanels :memos="memos" />
+    <MemoPanels :memos="memos" @deleteMemo="deleteMemo" />
   </div>
 </template>
 
@@ -18,6 +18,12 @@ export default defineComponent({
       required: true,
     },
   },
-  setup() {},
+  setup(_props, context) {
+    const deleteMemo = (index: number) => {
+      context.emit('deleteMemo', index);
+    };
+
+    return {deleteMemo};
+  },
 });
 </script>

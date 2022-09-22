@@ -45,7 +45,7 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props) {
+  setup(props, context) {
     const isEdit = ref<boolean>(false);
 
     const updateMemo = (memo: Memo) => {
@@ -58,7 +58,7 @@ export default defineComponent({
     };
 
     const deleteMemo = () => {
-      console.log('deleteMemo', props.index);
+      context.emit('deleteMemo', props.index);
     };
 
     return {
