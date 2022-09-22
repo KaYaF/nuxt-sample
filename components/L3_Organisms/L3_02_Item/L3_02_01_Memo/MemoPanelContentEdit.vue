@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType, reactive} from '@nuxtjs/composition-api';
+import {defineComponent, PropType, ref} from '@nuxtjs/composition-api';
 import {ValidationProvider} from 'vee-validate';
 import TextButton from '~/components/L1_Atom/L1_02_Button/TextButton.vue';
 import TitleSmall from '~/components/L1_Atom/L1_03_Text/TitleSmall.vue';
@@ -48,15 +48,15 @@ export default defineComponent({
     },
   },
   setup(props, context) {
-    const memoEdit = reactive(props.memo);
-    const memoOrigin = Object.assign({}, memoEdit);
+    const memoEdit = ref<Memo>(props.memo);
+    const memoOrigin = Object.assign({}, memoEdit.value);
 
     const updateMemo = () => {
-      context.emit('updateMemo', memoEdit);
+      context.emit('updateMemo', memoEdit.value);
     };
 
     const cancel = () => {
-      Object.assign(memoEdit, memoOrigin);
+      Object.assign(memoEdit.value, memoOrigin);
       context.emit('cancel');
     };
 
