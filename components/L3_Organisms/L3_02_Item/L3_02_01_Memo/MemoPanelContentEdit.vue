@@ -50,8 +50,7 @@ export default defineComponent({
     },
   },
   setup(props, context) {
-    const memoEdit = ref<Memo>(props.memo);
-    const memoOrigin = Object.assign({}, memoEdit.value);
+    const memoEdit = ref<Memo>(Object.assign({}, props.memo));
     const editFormRef = ref<InstanceType<typeof ValidationObserver>>();
 
     const updateMemo = () => {
@@ -63,7 +62,7 @@ export default defineComponent({
     };
 
     const cancel = () => {
-      Object.assign(memoEdit.value, memoOrigin);
+      Object.assign(memoEdit.value, props.memo);
       context.emit('cancel');
     };
 
