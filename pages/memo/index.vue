@@ -2,6 +2,7 @@
   <div class="memo-page">
     <MemoTemplate
       :memos="memos"
+      @createMemo="createMemo"
       @editMemo="editMemo"
       @deleteMemo="deleteMemo"
     />
@@ -29,6 +30,11 @@ export default defineComponent({
 
     const memos = ref<Array<Memo>>(memosOriginal);
 
+    const createMemo = (memo: Memo) => {
+      memos.value.reverse().push(memo);
+      memos.value.reverse();
+    };
+
     const editMemo = (memo: Memo, index: number) => {
       Object.assign(memos.value[index], memo);
     };
@@ -39,6 +45,7 @@ export default defineComponent({
 
     return {
       memos,
+      createMemo,
       editMemo,
       deleteMemo,
     };

@@ -23,11 +23,16 @@
           />
         </ValidationProvider>
       </div>
-      <div class="memo-panel-footer d-flex justify-end mb-2">
-        <TextButton class="px-2" @onClick="updateMemo"> Edit </TextButton>
-        <TextButton class="px-2" color="accent" @onClick="cancel">
-          Cancel
-        </TextButton>
+      <div class="memo-panel-footer mb-2">
+        <div v-if="addMode" class="d-flex justify-end">
+          <TextButton class="px-2" @onClick="updateMemo"> Create </TextButton>
+        </div>
+        <div v-else class="d-flex justify-end">
+          <TextButton class="px-2" @onClick="updateMemo"> Edit </TextButton>
+          <TextButton class="px-2" color="accent" @onClick="cancel">
+            Cancel
+          </TextButton>
+        </div>
       </div>
     </ValidationObserver>
   </div>
@@ -48,6 +53,10 @@ export default defineComponent({
       type: Object as PropType<Memo>,
       required: true,
     },
+    addMode: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, context) {
     const memoEdit = ref<Memo>(Object.assign({}, props.memo));
@@ -56,7 +65,13 @@ export default defineComponent({
     const updateMemo = () => {
       editFormRef.value?.validate().then((success: boolean) => {
         if (success) {
-          context.emit('updateMemo', Object.assign({}, memoEdit.value));
+          context.emit(
+            'updateMemo',
+            Object.assign({}, memoEdit.value),
+            editFormRef.value
+          );
+
+          memoEdit.value = {title: '', content: ''};
         }
       });
     };

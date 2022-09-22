@@ -1,6 +1,11 @@
 <template>
   <div class="memo-template">
-    <MemoPanels :memos="memos" @editMemo="editMemo" @deleteMemo="deleteMemo" />
+    <MemoPanels
+      :memos="memos"
+      @createMemo="createMemo"
+      @editMemo="editMemo"
+      @deleteMemo="deleteMemo"
+    />
   </div>
 </template>
 
@@ -19,6 +24,10 @@ export default defineComponent({
     },
   },
   setup(_props, context) {
+    const createMemo = (memo: Memo) => {
+      context.emit('createMemo', memo);
+    };
+
     const editMemo = (memo: Memo, index: number) => {
       context.emit('editMemo', memo, index);
     };
@@ -27,7 +36,7 @@ export default defineComponent({
       context.emit('deleteMemo', index);
     };
 
-    return {editMemo, deleteMemo};
+    return {createMemo, editMemo, deleteMemo};
   },
 });
 </script>
