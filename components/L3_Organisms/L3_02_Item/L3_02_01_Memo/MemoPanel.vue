@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from '@nuxtjs/composition-api';
+import {defineComponent, PropType, ref} from '@nuxtjs/composition-api';
 import MemoPanelContentDefault from './MemoPanelContentDefault.vue';
 import MemoPanelContentEdit from './MemoPanelContentEdit.vue';
 import {Memo} from '~/types/contents/Memo';
@@ -40,13 +40,13 @@ export default defineComponent({
       type: Number,
       required: true,
     },
+    memo: {
+      type: Object as PropType<Memo>,
+      required: true,
+    },
   },
   setup(props) {
     const isEdit = ref<boolean>(false);
-    const memo: Memo = {
-      title: 'memo: title',
-      content: 'memo: content',
-    };
 
     const updateMemo = (memo: Memo) => {
       console.log('updateMemo', memo);
@@ -63,7 +63,6 @@ export default defineComponent({
 
     return {
       isEdit,
-      memo,
       updateMemo,
       setEditMode,
       deleteMemo,
