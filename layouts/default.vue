@@ -64,6 +64,7 @@
 
 <script lang="ts">
 import {defineComponent} from '@nuxtjs/composition-api';
+import {ROUTE} from '~/constants/route';
 
 export default defineComponent({
   name: 'DefaultLayout',
@@ -76,7 +77,12 @@ export default defineComponent({
         {
           icon: 'mdi-apps',
           title: 'Welcome',
-          to: '/',
+          to: ROUTE.home,
+        },
+        {
+          icon: 'mdi-book-open-page-variant',
+          title: 'memo',
+          to: ROUTE.memo,
         },
       ],
       miniVariant: false,
