@@ -5,23 +5,36 @@ const baseURL = 'http://localhost:8080';
 const pagesPaths = getAllRelativeFilePathsInDirectory('pages');
 const testUrls = getAllLinksFromPagesPaths(pagesPaths);
 
-test(`visual regression test`, async ({page, viewport}, testinfo) => {
-  testinfo.snapshotSuffix = '';
+for (const testUrl of testUrls) {
+  test(
+    `visual regression test ` + testUrl,
+    async ({page, viewport}, testinfo) => {
+      testinfo.snapshotSuffix = '';
 
-  for (const testUrl of testUrls) {
-    await page.goto(testUrl);
-    await page.waitForLoadState('load');
-    const snapshotPathArray = getSnapShotPathArray(testUrl);
+      await page.goto(testUrl);
+      await page.waitForLoadState('load');
+      const snapshotPathArray = getSnapShotPathArray(testUrl);
 
-    await expect(page).toHaveScreenshot(
-      [...snapshotPathArray, `width-${viewport?.width}.png`],
-      {maxDiffPixelRatio: 0.05}
-    );
-  }
+      await page.waitForTimeout(500);
 
-  page.close();
-});
+      await expect(page).toHaveScreenshot(
+        [...snapshotPathArray, `width-${viewport?.width}.png`],
+        {
+          maxDiffPixelRatio: 0.05,
+          timeout: 20 * 1000,
+          fullPage: testUrl === baseURL,
+        }
+      );
+    }
+  );
+}
 
+/**
+ * Get the paths of all files under a specific folder.
+ *
+ * @param directoryPath path of the specific folder
+ * @returns relative paths of files
+ */
 function getAllRelativeFilePathsInDirectory(directoryPath: string): string[] {
   const dirents = fs.readdirSync(directoryPath, {withFileTypes: true});
   const relativePaths = dirents.flatMap(dirent => {
@@ -36,9 +49,13 @@ function getAllRelativeFilePathsInDirectory(directoryPath: string): string[] {
   return relativePaths;
 }
 
+/**
+ * Create a link to the corresponding page from the relative path of the file under 'pages'
+ *
+ * @param pagesPaths  relative paths of pages files
+ * @returns links of the pages
+ */
 function getAllLinksFromPagesPaths(pagesPaths: string[]): string[] {
-  // TODO: support _id.vue
-
   return pagesPaths.map(pagesPath => {
     const fixedPath = (
       pagesPath.match(/^pages(.*?)(\/index|)\.vue$/) as RegExpMatchArray
@@ -48,10 +65,16 @@ function getAllLinksFromPagesPaths(pagesPaths: string[]): string[] {
   });
 }
 
-function getSnapShotPathArray(link: string): string[] {
+/**
+ * Create a path of the snapshot from the link
+ *
+ * @param url url of the page
+ * @returns path of the snapshot
+ */
+function getSnapShotPathArray(url: string): string[] {
   // remove 'baseURL' or 'baseURL/'
   const reg = new RegExp('^' + baseURL + '(\\/|)(.*)');
-  const path = (link.match(reg) as RegExpMatchArray)[2];
+  const path = (url.match(reg) as RegExpMatchArray)[2];
 
   return path.split('/');
 }
