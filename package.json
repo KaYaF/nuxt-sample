@@ -70,6 +70,7 @@
   "resolutions": {
     "parse-path": "^5.0.0",
     "nth-check": "^2.0.1",
-    "glob-parent": "^5.1.2"
+    "glob-parent": "^5.1.2",
+    "parse-url": "^8.1.0"
   }
 }
