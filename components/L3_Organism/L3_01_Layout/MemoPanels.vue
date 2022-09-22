@@ -7,7 +7,7 @@
         </v-col>
       </v-expansion-panels>
 
-      <v-expansion-panels multiple>
+      <v-expansion-panels v-model="openPanelIndexes" multiple>
         <v-col v-for="(memo, index) in memos" :key="index" cols="12">
           <MemoPanel
             :index="index"
@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from '@nuxtjs/composition-api';
+import {defineComponent, PropType, ref} from '@nuxtjs/composition-api';
 import MemoPanel from '../L3_02_Item/L3_02_01_Memo/MemoPanel.vue';
 import MemoPanelAdd from '../L3_02_Item/L3_02_01_Memo/MemoPanelAdd.vue';
 import {Memo} from '~/types/contents/Memo';
@@ -37,8 +37,14 @@ export default defineComponent({
     },
   },
   setup(_props, context) {
+    const openPanelIndexes = ref<number[]>([]);
+
     const createMemo = (memo: Memo) => {
       context.emit('createMemo', memo);
+
+      for (let i = 0; i < openPanelIndexes.value.length; i++) {
+        openPanelIndexes.value[i]++;
+      }
     };
 
     const editMemo = (memo: Memo, index: number) => {
@@ -47,9 +53,18 @@ export default defineComponent({
 
     const deleteMemo = (index: number) => {
       context.emit('deleteMemo', index);
+
+      for (let i = 0; i < openPanelIndexes.value.length; i++) {
+        if (openPanelIndexes.value[i] === index) {
+          openPanelIndexes.value.splice(i, 1);
+          i--;
+        } else if (openPanelIndexes.value[i] > index) {
+          openPanelIndexes.value[i]--;
+        }
+      }
     };
 
-    return {createMemo, editMemo, deleteMemo};
+    return {openPanelIndexes, createMemo, editMemo, deleteMemo};
   },
 });
 </script>
