@@ -49,12 +49,16 @@ export default defineComponent({
   },
   setup(props, context) {
     const memoEdit = reactive(props.memo);
+    const memoOrigin = Object.assign({}, memoEdit);
 
     const updateMemo = () => {
       context.emit('updateMemo', memoEdit);
     };
 
-    const cancel = () => context.emit('cancel');
+    const cancel = () => {
+      Object.assign(memoEdit, memoOrigin);
+      context.emit('cancel');
+    };
 
     return {memoEdit, updateMemo, cancel};
   },
