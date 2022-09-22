@@ -19,13 +19,16 @@ export default defineComponent({
   setup(_props) {
     const memoSampleCount = 5;
 
-    const memos = ref<Array<Memo>>(Array(memoSampleCount));
+    const memosOriginal = Array<Memo>(memoSampleCount);
     for (let i = 0; i < memoSampleCount; i++) {
-      memos.value[i] = {
+      memosOriginal[i] = {
         title: `memo: title ${i}`,
         content: `memo: content ${i}`,
       };
     }
+
+    const memos = ref<Array<Memo>>(memosOriginal);
+
     const updateMemo = (memo: Memo, index: number) => {
       Object.assign(memos.value[index], memo);
     };
