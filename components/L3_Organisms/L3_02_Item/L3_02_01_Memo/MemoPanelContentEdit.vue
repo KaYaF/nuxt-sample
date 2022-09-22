@@ -4,7 +4,7 @@
       <title-small text="title:" />
       <ValidationProvider v-slot="{errors}" name="title" rules="required">
         <v-text-field
-          v-model="titleEdit"
+          v-model="memoEdit.title"
           outlined
           placeholder="input title"
           single-line
@@ -15,7 +15,7 @@
       <title-small text="content:" />
       <ValidationProvider v-slot="{errors}" name="content" rules="required">
         <v-textarea
-          v-model="contentEdit"
+          v-model="memoEdit.content"
           outlined
           placeholder="input content"
           :error-messages="errors"
@@ -32,34 +32,31 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from '@nuxtjs/composition-api';
+import {defineComponent, PropType, reactive} from '@nuxtjs/composition-api';
+import {ValidationProvider} from 'vee-validate';
 import TextButton from '~/components/L1_Atom/L1_02_Button/TextButton.vue';
 import TitleSmall from '~/components/L1_Atom/L1_03_Text/TitleSmall.vue';
-import {ValidationProvider} from 'vee-validate';
+import {Memo} from '~/types/contents/Memo';
 
 export default defineComponent({
   name: 'MemoPanelContentEdit',
   components: {TextButton, TitleSmall, ValidationProvider},
   props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    content: {
-      type: String,
+    memo: {
+      type: Object as PropType<Memo>,
       required: true,
     },
   },
   setup(props, context) {
-    const titleEdit = ref<string>(props.title);
-    const contentEdit = ref<string>(props.content);
+    const memoEdit = reactive(props.memo);
 
-    const updateMemo = () =>
-      context.emit('updateMemo', titleEdit.value, contentEdit.value);
+    const updateMemo = () => {
+      context.emit('updateMemo', memoEdit);
+    };
 
     const cancel = () => context.emit('cancel');
 
-    return {titleEdit, contentEdit, updateMemo, cancel};
+    return {memoEdit, updateMemo, cancel};
   },
 });
 </script>

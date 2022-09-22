@@ -2,21 +2,20 @@
   <div class="memo-panel">
     <v-expansion-panel>
       <!-- use L1 and L2 later -->
-      <v-expansion-panel-header> {{ title }} </v-expansion-panel-header>
+      <v-expansion-panel-header> {{ memo.title }} </v-expansion-panel-header>
 
       <v-expansion-panel-content>
         <v-expand-transition>
           <MemoPanelContentEdit
             v-if="isEdit"
-            :title="title"
-            :content="content"
+            :memo="memo"
             @updateMemo="updateMemo"
             @cancel="setEditMode(false)"
           >
           </MemoPanelContentEdit>
           <MemoPanelContentDefault
             v-else
-            :content="content"
+            :content="memo.content"
             @changeToEditMode="setEditMode(true)"
             @deleteMemo="deleteMemo"
           >
@@ -31,6 +30,7 @@
 import {defineComponent, ref} from '@nuxtjs/composition-api';
 import MemoPanelContentDefault from './MemoPanelContentDefault.vue';
 import MemoPanelContentEdit from './MemoPanelContentEdit.vue';
+import {Memo} from '~/types/contents/Memo';
 
 export default defineComponent({
   name: 'MemoPanel',
@@ -43,11 +43,13 @@ export default defineComponent({
   },
   setup(props) {
     const isEdit = ref<boolean>(false);
-    const title = 'memo: title';
-    const content = 'memo: content';
+    const memo: Memo = {
+      title: 'memo: title',
+      content: 'memo: content',
+    };
 
-    const updateMemo = (title: string, content: string) => {
-      console.log('updateMemo', props.index, title, content);
+    const updateMemo = (memo: Memo) => {
+      console.log('updateMemo', memo);
       isEdit.value = false;
     };
 
@@ -61,8 +63,7 @@ export default defineComponent({
 
     return {
       isEdit,
-      title,
-      content,
+      memo,
       updateMemo,
       setEditMode,
       deleteMemo,
