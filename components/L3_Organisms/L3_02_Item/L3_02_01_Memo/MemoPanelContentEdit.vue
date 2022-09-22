@@ -2,15 +2,25 @@
   <div class="memo-panel-content-edit">
     <div class="memo-panel-content">
       <title-small text="title:" />
-      <v-text-field
-        v-model="titleEdit"
-        outlined
-        placeholder="input title"
-        single-line
-      />
+      <ValidationProvider v-slot="{errors}" name="title" rules="required">
+        <v-text-field
+          v-model="titleEdit"
+          outlined
+          placeholder="input title"
+          single-line
+          :error-messages="errors"
+        />
+      </ValidationProvider>
 
       <title-small text="content:" />
-      <v-textarea v-model="contentEdit" outlined placeholder="input content" />
+      <ValidationProvider v-slot="{errors}" name="content" rules="required">
+        <v-textarea
+          v-model="contentEdit"
+          outlined
+          placeholder="input content"
+          :error-messages="errors"
+        />
+      </ValidationProvider>
     </div>
     <div class="memo-panel-footer d-flex justify-end mb-2">
       <TextButton class="px-2" @onClick="updateMemo"> Edit </TextButton>
@@ -25,10 +35,11 @@
 import {defineComponent, ref} from '@nuxtjs/composition-api';
 import TextButton from '~/components/L1_Atom/L1_02_Button/TextButton.vue';
 import TitleSmall from '~/components/L1_Atom/L1_03_Text/TitleSmall.vue';
+import {ValidationProvider} from 'vee-validate';
 
 export default defineComponent({
   name: 'MemoPanelContentEdit',
-  components: {TextButton, TitleSmall},
+  components: {TextButton, TitleSmall, ValidationProvider},
   props: {
     title: {
       type: String,
