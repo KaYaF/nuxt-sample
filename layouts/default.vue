@@ -1,23 +1,6 @@
 <template>
   <v-app dark>
-    <v-navigation-drawer app>
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
+    <Sidebar :items="items" />
     <v-app-bar app>
       <v-toolbar-title>{{ title }}</v-toolbar-title>
       <v-spacer />
@@ -36,24 +19,29 @@
 
 <script lang="ts">
 import {defineComponent} from '@nuxtjs/composition-api';
+import Sidebar from '~/components/L3_Organism/L3_01_Layout/Sidebar.vue';
 import {ROUTE} from '~/constants/route';
+import {SidebarItem} from '~/types/contents/Sidebar';
 
 export default defineComponent({
   name: 'DefaultLayout',
+  components: {Sidebar},
   setup() {
+    const items: SidebarItem[] = [
+      {
+        icon: 'mdi-apps',
+        title: 'Welcome',
+        to: ROUTE.home,
+      },
+      {
+        icon: 'mdi-book-open-page-variant',
+        title: 'memo',
+        to: ROUTE.memo,
+      },
+    ];
+
     return {
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: ROUTE.home,
-        },
-        {
-          icon: 'mdi-book-open-page-variant',
-          title: 'memo',
-          to: ROUTE.memo,
-        },
-      ],
+      items,
       title: 'Nuxt Sample',
     };
   },
