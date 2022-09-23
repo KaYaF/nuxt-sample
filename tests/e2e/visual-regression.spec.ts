@@ -20,7 +20,6 @@ for (const testUrl of testUrls) {
       await expect(page).toHaveScreenshot(
         [...snapshotPathArray, `width-${viewport?.width}.png`],
         {
-          maxDiffPixelRatio: 0.05,
           timeout: 20 * 1000,
           fullPage: testUrl === baseURL,
         }
