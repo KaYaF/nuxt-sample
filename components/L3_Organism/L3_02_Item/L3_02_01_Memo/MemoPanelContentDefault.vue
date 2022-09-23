@@ -1,3 +1,30 @@
+<script setup lang="ts">
+// name: 'MemoPanelContentDefault'
+import MdiIconButton from '~/components/L1_Atom/L1_02_Button/MdiIconButton.vue';
+
+defineProps({
+  content: {
+    type: String,
+    required: true,
+  },
+});
+
+type Emits = {
+  (name: 'changeToEditMode'): void;
+  (name: 'deleteMemo'): void;
+};
+
+const emit = defineEmits<Emits>();
+
+const changeToEditMode = () => {
+  emit('changeToEditMode');
+};
+
+const deleteMemo = () => {
+  emit('deleteMemo');
+};
+</script>
+
 <template>
   <div class="memo-panel-content-default">
     <div class="memo-panel-content">
@@ -23,30 +50,3 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import {defineComponent} from '@nuxtjs/composition-api';
-import MdiIconButton from '~/components/L1_Atom/L1_02_Button/MdiIconButton.vue';
-
-export default defineComponent({
-  name: 'MemoPanelContentDefault',
-  components: {MdiIconButton},
-  props: {
-    content: {
-      type: String,
-      required: true,
-    },
-  },
-  setup(_props, context) {
-    const changeToEditMode = () => {
-      context.emit('changeToEditMode');
-    };
-
-    const deleteMemo = () => {
-      context.emit('deleteMemo');
-    };
-
-    return {changeToEditMode, deleteMemo};
-  },
-});
-</script>
