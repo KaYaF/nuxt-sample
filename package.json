@@ -11,7 +11,7 @@
     "prettier": "prettier --config ./configs/.prettierrc --ignore-path ./.gitignore --cache --cache-strategy content",
     "eslint": "eslint --ignore-path .gitignore . -c ./configs/.eslintrc.js --cache --cache-location node_modules/.cache/eslint/ --cache-strategy content",
     "stylelint": "stylelint --ignore-path .gitignore --config ./configs/stylelint.config.js --cache --cache-location node_modules/.cache/stylelint/",
-    "commitlint": "commitlint -g ./configs/commitlint.config.js",
+    "commitlint": "commitlint -g ./configs/commitlint.config.ts",
     "playwright:unit": "playwright test --config ./configs/playwright.unit.config.ts",
     "playwright:e2e": "playwright test --config ./configs/playwright.e2e.config.ts",
     "format": "yarn prettier --write --list-different .",
