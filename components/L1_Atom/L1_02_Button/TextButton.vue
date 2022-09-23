@@ -13,10 +13,10 @@ defineProps({
 });
 
 type Emits = {
-  (name: 'onClick', event: PointerEvent): void;
+  (name: 'onClick', event: MouseEvent): void;
 };
 const emit = defineEmits<Emits>();
-const onClick = (e: PointerEvent) => emit('onClick', e);
+const onClick = (e: MouseEvent) => emit('onClick', e);
 </script>
 
 <template>
