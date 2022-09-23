@@ -54,7 +54,7 @@ export default defineComponent({
           to: ROUTE.memo,
         },
       ],
-      title: 'Vuetify.js',
+      title: 'Nuxt Sample',
     };
   },
 });
