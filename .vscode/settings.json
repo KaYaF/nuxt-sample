@@ -2,10 +2,12 @@
   "cSpell.words": [
     "commitlint",
     "dirents",
+    "nuxi",
     "nuxt",
     "stylelint",
     "testinfo",
-    "viewports"
+    "viewports",
+    "vuetify"
   ],
   "prettier.configPath": "./configs/.prettierrc",
   "playwright.env": {

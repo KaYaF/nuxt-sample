@@ -1,3 +1,28 @@
+<script setup lang="ts">
+import {ValidationObserver} from 'vee-validate';
+import {defineComponent} from 'vue';
+import MemoPanelContentEdit from './MemoPanelContentEdit.vue';
+import {Memo} from '~/types/contents/Memo';
+
+defineComponent({
+  name: 'MemoPanelAdd',
+});
+
+type Emits = {
+  (name: 'createMemo', memo: Memo): void;
+};
+
+const emit = defineEmits<Emits>();
+
+const createMemo = (
+  memo: Memo,
+  validationObserver: InstanceType<typeof ValidationObserver>
+) => {
+  emit('createMemo', memo);
+  validationObserver.reset();
+};
+</script>
+
 <template>
   <div class="memo-panel-add">
     <v-expansion-panel>
@@ -14,27 +39,3 @@
     </v-expansion-panel>
   </div>
 </template>
-
-<script lang="ts">
-import {defineComponent} from '@nuxtjs/composition-api';
-import {ValidationObserver} from 'vee-validate';
-import MemoPanelContentEdit from './MemoPanelContentEdit.vue';
-import {Memo} from '~/types/contents/Memo';
-
-export default defineComponent({
-  name: 'MemoPanelAdd',
-  components: {MemoPanelContentEdit},
-  props: {},
-  setup(_props, context) {
-    const createMemo = (
-      memo: Memo,
-      validationObserver: InstanceType<typeof ValidationObserver>
-    ) => {
-      context.emit('createMemo', memo);
-      validationObserver.reset();
-    };
-
-    return {createMemo};
-  },
-});
-</script>

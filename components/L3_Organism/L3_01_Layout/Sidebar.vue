@@ -1,3 +1,19 @@
+<script setup lang="ts">
+import {defineComponent, PropType} from 'vue';
+import {SidebarItem} from '~/types/contents/Sidebar';
+
+defineComponent({
+  name: 'Sidebar',
+});
+
+defineProps({
+  items: {
+    type: Array as PropType<SidebarItem[]>,
+    required: true,
+  },
+});
+</script>
+
 <template>
   <div class="sidebar">
     <v-navigation-drawer app>
@@ -20,20 +36,3 @@
     </v-navigation-drawer>
   </div>
 </template>
-
-<script lang="ts">
-import {defineComponent, PropType} from '@nuxtjs/composition-api';
-import {SidebarItem} from '~/types/contents/Sidebar';
-
-export default defineComponent({
-  name: 'MemoPanels',
-  components: {},
-  props: {
-    items: {
-      type: Array as PropType<SidebarItem[]>,
-      required: true,
-    },
-  },
-  setup() {},
-});
-</script>

@@ -1,3 +1,59 @@
+<script setup lang="ts">
+import {ref, PropType, defineComponent} from 'vue';
+import {ValidationProvider, ValidationObserver} from 'vee-validate';
+import TextButton from '~/components/L1_Atom/L1_02_Button/TextButton.vue';
+import TitleSmall from '~/components/L1_Atom/L1_03_Text/TitleSmall.vue';
+import {Memo} from '~/types/contents/Memo';
+
+defineComponent({
+  name: 'MemoPanelContentEdit',
+});
+
+const props = defineProps({
+  memo: {
+    type: Object as PropType<Memo>,
+    required: true,
+  },
+  addMode: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const memoEdit = ref<Memo>(Object.assign({}, props.memo));
+const editFormRef = ref<InstanceType<typeof ValidationObserver>>();
+
+type Emits = {
+  (
+    name: 'updateMemo',
+    memo: Memo,
+    editForm: InstanceType<typeof ValidationObserver>
+  ): void;
+  (name: 'cancel'): void;
+};
+
+const emit = defineEmits<Emits>();
+
+const updateMemo = () => {
+  editFormRef.value?.validate().then((success: boolean) => {
+    if (success) {
+      emit(
+        'updateMemo',
+        Object.assign({}, memoEdit.value),
+        editFormRef.value as InstanceType<typeof ValidationObserver>
+      );
+
+      memoEdit.value = {title: '', content: ''};
+    }
+  });
+};
+
+const cancel = () => {
+  Object.assign(memoEdit.value, props.memo);
+  emit('cancel');
+};
+</script>
+
 <template>
   <div class="memo-panel-content-edit">
     <ValidationObserver ref="editFormRef">
@@ -37,51 +93,3 @@
     </ValidationObserver>
   </div>
 </template>
-
-<script lang="ts">
-import {defineComponent, PropType, ref} from '@nuxtjs/composition-api';
-import {ValidationProvider, ValidationObserver} from 'vee-validate';
-import TextButton from '~/components/L1_Atom/L1_02_Button/TextButton.vue';
-import TitleSmall from '~/components/L1_Atom/L1_03_Text/TitleSmall.vue';
-import {Memo} from '~/types/contents/Memo';
-
-export default defineComponent({
-  name: 'MemoPanelContentEdit',
-  components: {TextButton, TitleSmall, ValidationProvider, ValidationObserver},
-  props: {
-    memo: {
-      type: Object as PropType<Memo>,
-      required: true,
-    },
-    addMode: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  setup(props, context) {
-    const memoEdit = ref<Memo>(Object.assign({}, props.memo));
-    const editFormRef = ref<InstanceType<typeof ValidationObserver>>();
-
-    const updateMemo = () => {
-      editFormRef.value?.validate().then((success: boolean) => {
-        if (success) {
-          context.emit(
-            'updateMemo',
-            Object.assign({}, memoEdit.value),
-            editFormRef.value
-          );
-
-          memoEdit.value = {title: '', content: ''};
-        }
-      });
-    };
-
-    const cancel = () => {
-      Object.assign(memoEdit.value, props.memo);
-      context.emit('cancel');
-    };
-
-    return {memoEdit, editFormRef, updateMemo, cancel};
-  },
-});
-</script>
