@@ -1,6 +1,7 @@
+import {defineNuxtConfig} from '@nuxt/bridge';
 import colors from 'vuetify/es5/util/colors';
 
-export default {
+export default defineNuxtConfig({
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - nuxt-sample',
@@ -28,14 +29,10 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/stylelint
     ['@nuxtjs/stylelint-module', {configFile: './configs/stylelint.config.js'}],
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
-    // https://composition-api.nuxtjs.org/
-    '@nuxtjs/composition-api/module',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -78,4 +75,4 @@ export default {
   server: {
     host: '0.0.0.0',
   },
-};
+});
