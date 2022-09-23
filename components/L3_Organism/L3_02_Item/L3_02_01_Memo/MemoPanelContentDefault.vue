@@ -1,6 +1,10 @@
 <script setup lang="ts">
-// name: 'MemoPanelContentDefault'
+import {defineComponent} from 'vue';
 import MdiIconButton from '~/components/L1_Atom/L1_02_Button/MdiIconButton.vue';
+
+defineComponent({
+  name: 'MemoPanelContentDefault',
+});
 
 defineProps({
   content: {

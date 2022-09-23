@@ -1,9 +1,12 @@
 <script setup lang="ts">
-// name: 'MemoPanels'
-import {ref} from 'vue';
+import {defineComponent, ref} from 'vue';
 import MemoPanel from '../L3_02_Item/L3_02_01_Memo/MemoPanel.vue';
 import MemoPanelAdd from '../L3_02_Item/L3_02_01_Memo/MemoPanelAdd.vue';
 import {Memo} from '~/types/contents/Memo';
+
+defineComponent({
+  name: 'MemoPanels',
+});
 
 type Props = {
   memos: Memo[];

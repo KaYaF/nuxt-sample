@@ -1,7 +1,10 @@
 <script setup lang="ts">
-// name: 'Sidebar'
-import {PropType} from 'vue';
+import {defineComponent, PropType} from 'vue';
 import {SidebarItem} from '~/types/contents/Sidebar';
+
+defineComponent({
+  name: 'Sidebar',
+});
 
 defineProps({
   items: {

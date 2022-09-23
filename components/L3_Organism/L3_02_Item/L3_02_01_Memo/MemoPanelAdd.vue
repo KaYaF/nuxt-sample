@@ -1,8 +1,12 @@
 <script setup lang="ts">
-// name: 'MemoPanelAdd'
 import {ValidationObserver} from 'vee-validate';
+import {defineComponent} from 'vue';
 import MemoPanelContentEdit from './MemoPanelContentEdit.vue';
 import {Memo} from '~/types/contents/Memo';
+
+defineComponent({
+  name: 'MemoPanelAdd',
+});
 
 type Emits = {
   (name: 'createMemo', memo: Memo): void;

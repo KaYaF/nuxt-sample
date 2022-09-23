@@ -1,9 +1,11 @@
 <script setup lang="ts">
-// name: 'MemoTemplate'
-
-import {PropType} from 'vue';
+import {defineComponent, PropType} from 'vue';
 import MemoPanels from '~/components/L3_Organism/L3_01_Layout/MemoPanels.vue';
 import {Memo} from '~/types/contents/Memo';
+
+defineComponent({
+  name: 'MemoTemplate',
+});
 
 defineProps({
   memos: {

@@ -1,9 +1,12 @@
 <script setup lang="ts">
-// name: 'MemoPanel'
-import {ref} from 'vue';
+import {defineComponent, ref} from 'vue';
 import MemoPanelContentDefault from './MemoPanelContentDefault.vue';
 import MemoPanelContentEdit from './MemoPanelContentEdit.vue';
 import {Memo} from '~/types/contents/Memo';
+
+defineComponent({
+  name: 'MemoPanel',
+});
 
 type Props = {
   index: number;

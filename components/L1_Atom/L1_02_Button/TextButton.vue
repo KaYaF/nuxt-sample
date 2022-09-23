@@ -1,5 +1,9 @@
 <script setup lang="ts">
-// name: 'TextButton'
+import {defineComponent} from 'vue';
+
+defineComponent({
+  name: 'TextButton',
+});
 
 defineProps({
   color: {

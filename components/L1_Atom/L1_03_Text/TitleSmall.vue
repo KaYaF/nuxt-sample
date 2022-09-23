@@ -1,5 +1,9 @@
 <script setup lang="ts">
-// name: 'TitleSmall'
+import {defineComponent} from 'vue';
+
+defineComponent({
+  name: 'TitleSmall',
+});
 
 defineProps({
   text: {

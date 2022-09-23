@@ -1,8 +1,11 @@
 <script setup lang="ts">
-// name: 'MemoPage'
-import {ref} from 'vue';
+import {defineComponent, ref} from 'vue';
 import MemoTemplate from '~/components/L4_Template/L4_01_PageTemplate/MemoTemplate.vue';
 import {Memo} from '~/types/contents/Memo';
+
+defineComponent({
+  name: 'MemoPage',
+});
 
 const memoSampleCount = 5;
 

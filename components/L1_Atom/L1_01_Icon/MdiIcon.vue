@@ -1,6 +1,10 @@
 <script setup lang="ts">
-// name: 'MdiIcon'
+import {defineComponent} from 'vue';
 import {ICON_SIZE} from '~/constants/common';
+
+defineComponent({
+  name: 'MdiIcon',
+});
 
 type Props = {
   iconName: string;

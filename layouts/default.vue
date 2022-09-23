@@ -1,8 +1,12 @@
 <script setup lang="ts">
-// name: 'DefaultLayout',
+import {defineComponent} from 'vue';
 import Sidebar from '~/components/L3_Organism/L3_01_Layout/Sidebar.vue';
 import {ROUTE} from '~/constants/route';
 import {SidebarItem} from '~/types/contents/Sidebar';
+
+defineComponent({
+  name: 'DefaultLayout',
+});
 
 const items: SidebarItem[] = [
   {

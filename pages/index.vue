@@ -1,5 +1,9 @@
 <script setup lang="ts">
-// name: 'IndexPage'
+import {defineComponent} from 'vue';
+
+defineComponent({
+  name: 'IndexPage',
+});
 </script>
 
 <template>

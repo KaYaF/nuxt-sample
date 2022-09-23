@@ -1,6 +1,10 @@
 <script setup lang="ts">
-// name: 'MdiIconButton'
+import {defineComponent} from 'vue';
 import {ICON_SIZE} from '~/constants/common';
+
+defineComponent({
+  name: 'MdiIconButton',
+});
 
 defineProps({
   iconName: {
