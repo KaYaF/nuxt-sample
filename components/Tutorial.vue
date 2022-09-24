@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import {defineComponent} from 'vue';
+
+defineComponent({
+  name: 'NuxtTutorial',
+});
+</script>
+
 <!-- Please remove this file from your project -->
 <template>
   <div
@@ -114,9 +122,3 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'NuxtTutorial',
-};
-</script>
