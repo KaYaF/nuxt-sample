@@ -1,7 +1,7 @@
 import fs from 'fs';
 import {test, expect} from '@playwright/test';
 
-const baseURL = 'http://localhost:3000';
+const baseURL = 'http://localhost:8080';
 const pagesPaths = getAllRelativeFilePathsInDirectory('pages');
 const testUrls = getAllLinksFromPagesPaths(pagesPaths);
 
