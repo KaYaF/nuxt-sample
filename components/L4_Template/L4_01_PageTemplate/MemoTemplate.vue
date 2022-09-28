@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import {defineComponent, PropType} from 'vue';
+import {defineNuxtComponent, PropType} from '@nuxt/bridge/dist/runtime';
 import MemoPanels from '~/components/L3_Organism/L3_01_Layout/MemoPanels.vue';
 import {Memo} from '~/types/contents/Memo';
 
-defineComponent({
+defineNuxtComponent({
   name: 'MemoTemplate',
 });
 

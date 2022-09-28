@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import {defineComponent, PropType} from 'vue';
+import {defineNuxtComponent, PropType} from '@nuxt/bridge/dist/runtime';
 import {SidebarItem} from '~/types/contents/Sidebar';
 
-defineComponent({
+defineNuxtComponent({
   name: 'Sidebar',
 });
 

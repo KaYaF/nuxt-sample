@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import {ValidationObserver} from 'vee-validate';
-import {defineComponent} from 'vue';
+import {defineNuxtComponent} from '@nuxt/bridge/dist/runtime';
 import MemoPanelContentEdit from './MemoPanelContentEdit.vue';
 import {Memo} from '~/types/contents/Memo';
 
-defineComponent({
+defineNuxtComponent({
   name: 'MemoPanelAdd',
 });
 

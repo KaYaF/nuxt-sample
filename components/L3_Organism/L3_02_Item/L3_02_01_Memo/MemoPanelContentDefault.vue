@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import {defineComponent} from 'vue';
+import {defineNuxtComponent} from '@nuxt/bridge/dist/runtime';
 import MdiIconButton from '~/components/L1_Atom/L1_02_Button/MdiIconButton.vue';
 
-defineComponent({
+defineNuxtComponent({
   name: 'MemoPanelContentDefault',
 });
 

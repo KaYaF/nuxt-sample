@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import {defineComponent, ref} from 'vue';
+import {defineNuxtComponent, ref} from '@nuxt/bridge/dist/runtime';
 import MemoPanel from '../L3_02_Item/L3_02_01_Memo/MemoPanel.vue';
 import MemoPanelAdd from '../L3_02_Item/L3_02_01_Memo/MemoPanelAdd.vue';
 import {Memo} from '~/types/contents/Memo';
 
-defineComponent({
+defineNuxtComponent({
   name: 'MemoPanels',
 });
 

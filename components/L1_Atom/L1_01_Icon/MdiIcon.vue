@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import {defineComponent} from 'vue';
+import {defineNuxtComponent} from '@nuxt/bridge/dist/runtime';
 import {ICON_SIZE} from '~/constants/common';
 
-defineComponent({
+defineNuxtComponent({
   name: 'MdiIcon',
 });
 
