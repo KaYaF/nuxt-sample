@@ -44,7 +44,9 @@ function updateMemo() {
         editFormRef.value as InstanceType<typeof ValidationObserver>
       );
 
-      memoEdit.value = {title: '', content: ''};
+      if (addMode) {
+        memoEdit.value = {title: '', content: ''};
+      }
     }
   });
 }
