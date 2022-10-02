@@ -75,4 +75,13 @@ export default defineNuxtConfig({
   server: {
     host: '0.0.0.0',
   },
+
+  hooks: {
+    'webpack:config'(configs) {
+      configs[0]?.module?.rules?.push({
+        test: /\.ya?ml$/,
+        use: 'js-yaml-loader',
+      });
+    },
+  },
 });
