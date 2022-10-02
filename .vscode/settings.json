@@ -16,6 +16,6 @@
   },
   "eslint.format.enable": false,
   "eslint.options": {
-    "configPath": "./configs/.eslintrc.js"
+    "overrideConfigFile": "./configs/.eslintrc.js"
   }
 }
