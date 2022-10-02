@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import {defineNuxtComponent, useNuxt2Meta} from '@nuxt/bridge/dist/runtime';
-
 defineNuxtComponent({
   name: 'ErrorLayout',
   layout: 'error',

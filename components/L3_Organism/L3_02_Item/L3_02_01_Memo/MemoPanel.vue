@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import {defineNuxtComponent, ref} from '@nuxt/bridge/dist/runtime';
 import MemoPanelContentDefault from './MemoPanelContentDefault.vue';
 import MemoPanelContentEdit from './MemoPanelContentEdit.vue';
 import {Memo} from '~/types/contents/Memo';

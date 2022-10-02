@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import {defineNuxtComponent} from '@nuxt/bridge/dist/runtime';
 import Sidebar from '~/components/L3_Organism/L3_01_Layout/Sidebar.vue';
 import {ROUTE} from '~/constants/route';
 import {SidebarItem} from '~/types/contents/Sidebar';

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import {defineNuxtComponent} from '@nuxt/bridge/dist/runtime';
-
 defineNuxtComponent({
   name: 'TitleSmall',
 });

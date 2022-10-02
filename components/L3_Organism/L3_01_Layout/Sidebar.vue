@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {defineNuxtComponent, PropType} from '@nuxt/bridge/dist/runtime';
+import {PropType} from '@nuxt/bridge/dist/runtime';
 import {SidebarItem} from '~/types/contents/Sidebar';
 
 defineNuxtComponent({
