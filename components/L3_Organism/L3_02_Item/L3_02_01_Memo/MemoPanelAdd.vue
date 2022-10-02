@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import {ValidationObserver} from 'vee-validate';
 import MemoPanelContentEdit from './MemoPanelContentEdit.vue';
 import {Memo} from '~/types/contents/Memo';
 
@@ -11,14 +10,6 @@ type Emits = {
   (name: 'createMemo', memo: Memo): void;
 };
 const emit = defineEmits<Emits>();
-
-function createMemo(
-  memo: Memo,
-  validationObserver: InstanceType<typeof ValidationObserver>
-) {
-  emit('createMemo', memo);
-  validationObserver.reset();
-}
 </script>
 
 <template>
@@ -31,7 +22,7 @@ function createMemo(
         <MemoPanelContentEdit
           :memo="{title: '', content: ''}"
           :add-mode="true"
-          @updateMemo="createMemo"
+          @updateMemo="memo => emit('createMemo', memo)"
         />
       </v-expansion-panel-content>
     </v-expansion-panel>

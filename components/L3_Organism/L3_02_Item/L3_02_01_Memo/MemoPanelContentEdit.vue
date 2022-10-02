@@ -25,11 +25,7 @@ const memoEdit = ref<Memo>(Object.assign({}, memo.value));
 const editFormRef = ref<InstanceType<typeof ValidationObserver>>();
 
 type Emits = {
-  (
-    name: 'updateMemo',
-    memo: Memo,
-    editForm: InstanceType<typeof ValidationObserver>
-  ): void;
+  (name: 'updateMemo', memo: Memo): void;
   (name: 'cancel'): void;
 };
 
@@ -38,14 +34,11 @@ const emit = defineEmits<Emits>();
 function updateMemo() {
   editFormRef.value?.validate().then((success: boolean) => {
     if (success) {
-      emit(
-        'updateMemo',
-        Object.assign({}, memoEdit.value),
-        editFormRef.value as InstanceType<typeof ValidationObserver>
-      );
+      emit('updateMemo', Object.assign({}, memoEdit.value));
 
       if (addMode) {
         memoEdit.value = {title: '', content: ''};
+        (editFormRef.value as InstanceType<typeof ValidationObserver>).reset();
       }
     }
   });
