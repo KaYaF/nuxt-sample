@@ -6,26 +6,26 @@ const pagesPaths = getAllRelativeFilePathsInDirectory('pages');
 const testUrls = getAllLinksFromPagesPaths(pagesPaths);
 
 for (const testUrl of testUrls) {
-  test(
-    `visual regression test ` + testUrl,
-    async ({page, viewport}, testinfo) => {
-      testinfo.snapshotSuffix = '';
+  test(`visual regression test ${testUrl}`, async ({
+    page,
+    viewport,
+  }, testinfo) => {
+    testinfo.snapshotSuffix = '';
 
-      await page.goto(testUrl);
-      await page.waitForLoadState('load');
-      const snapshotPathArray = getSnapShotPathArray(testUrl);
+    await page.goto(testUrl);
+    await page.waitForLoadState('load');
+    const snapshotPathArray = getSnapShotPathArray(testUrl);
 
-      await page.waitForTimeout(500);
+    await page.waitForTimeout(500);
 
-      await expect(page).toHaveScreenshot(
-        [...snapshotPathArray, `width-${viewport?.width}.png`],
-        {
-          timeout: 20 * 1000,
-          fullPage: testUrl === baseURL,
-        }
-      );
-    }
-  );
+    await expect(page).toHaveScreenshot(
+      [...snapshotPathArray, `width-${viewport?.width}.png`],
+      {
+        timeout: 20 * 1000,
+        fullPage: testUrl === baseURL,
+      }
+    );
+  });
 }
 
 /**
@@ -72,7 +72,7 @@ function getAllLinksFromPagesPaths(pagesPaths: string[]): string[] {
  */
 function getSnapShotPathArray(url: string): string[] {
   // remove 'baseURL' or 'baseURL/'
-  const reg = new RegExp('^' + baseURL + '(\\/|)(.*)');
+  const reg = new RegExp(`^${baseURL}(\\/|)(.*)`);
   const path = (url.match(reg) as RegExpMatchArray)[2];
 
   return path.split('/');

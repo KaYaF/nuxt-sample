@@ -3,6 +3,7 @@ module.exports = {
   env: {
     browser: true,
     node: true,
+    es2022: true,
   },
   extends: [
     '@nuxtjs/eslint-config-typescript',
@@ -11,12 +12,20 @@ module.exports = {
     'plugin:nuxt/recommended',
     'prettier',
   ],
-  plugins: [],
-  // add your custom rules here
   rules: {
     '@typescript-eslint/no-empty-function': 'off',
     'no-useless-constructor': 'off',
     'vue/multi-word-component-names': 'off',
     eqeqeq: ['error', 'smart'],
+    'arrow-parens': [2, 'as-needed'],
+    'no-duplicate-imports': [2, {includeExports: true}],
+    'prefer-arrow-callback': 2,
+    'prefer-spread': 2,
+    'prefer-template': 2,
+    'no-await-in-loop': 2,
+    'no-constant-binary-expression': 2,
+    'no-debugger': 2,
+    'no-dupe-else-if': 2,
+    'no-inner-declarations': 2,
   },
 };
