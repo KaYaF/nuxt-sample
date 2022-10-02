@@ -54,35 +54,71 @@ function cancel() {
   <div class="memo-panel-content-edit">
     <ValidationObserver ref="editFormRef">
       <div class="memo-panel-content">
-        <title-small text="title:" />
+        <title-small
+          :text="
+            $vuetify.lang.t(
+              '$vuetify.L3.item.memo.memo_panel_content_edit.title'
+            )
+          "
+        />
         <ValidationProvider v-slot="{errors}" name="title" rules="required">
           <v-text-field
             v-model="memoEdit.title"
             outlined
-            placeholder="input title"
+            :placeholder="
+              $vuetify.lang.t(
+                '$vuetify.L3.item.memo.memo_panel_content_edit.input_title'
+              )
+            "
             single-line
             :error-messages="errors"
           />
         </ValidationProvider>
 
-        <title-small text="content:" />
+        <title-small
+          :text="
+            $vuetify.lang.t(
+              '$vuetify.L3.item.memo.memo_panel_content_edit.content'
+            )
+          "
+        />
         <ValidationProvider v-slot="{errors}" name="content" rules="required">
           <v-textarea
             v-model="memoEdit.content"
             outlined
-            placeholder="input content"
+            :placeholder="
+              $vuetify.lang.t(
+                '$vuetify.L3.item.memo.memo_panel_content_edit.input_content'
+              )
+            "
             :error-messages="errors"
           />
         </ValidationProvider>
       </div>
       <div class="memo-panel-footer mb-2">
         <div v-if="addMode" class="d-flex justify-end">
-          <TextButton class="px-2" @click="updateMemo"> Create </TextButton>
+          <TextButton class="px-2" @click="updateMemo">
+            {{
+              $vuetify.lang.t(
+                '$vuetify.L3.item.memo.memo_panel_content_edit.create'
+              )
+            }}
+          </TextButton>
         </div>
         <div v-else class="d-flex justify-end">
-          <TextButton class="px-2" @click="updateMemo"> Edit </TextButton>
+          <TextButton class="px-2" @click="updateMemo">
+            {{
+              $vuetify.lang.t(
+                '$vuetify.L3.item.memo.memo_panel_content_edit.edit'
+              )
+            }}
+          </TextButton>
           <TextButton class="px-2" color="accent" @click="cancel">
-            Cancel
+            {{
+              $vuetify.lang.t(
+                '$vuetify.L3.item.memo.memo_panel_content_edit.cancel'
+              )
+            }}
           </TextButton>
         </div>
       </div>

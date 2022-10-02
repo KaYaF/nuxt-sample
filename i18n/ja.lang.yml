@@ -1,0 +1,13 @@
+L3:
+  item:
+    memo:
+      memo_panel_content_edit:
+        title: 'タイトル:'
+        input_title: 'タイトルを入力してください'
+        content: 'メモ:'
+        input_content: 'メモを入力してください'
+        create: '作成'
+        edit: '編集'
+        cancel: 'キャンセル'
+      memo_panel_add:
+        new_memo: '新しいメモ'

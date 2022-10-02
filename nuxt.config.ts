@@ -22,7 +22,7 @@ export default defineNuxtConfig({
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['@/plugins/vee-validate'],
+  plugins: ['@/plugins/vee-validate', '@/plugins/vuetify-i18n-loader'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -74,5 +74,14 @@ export default defineNuxtConfig({
   // Allow access by IP
   server: {
     host: '0.0.0.0',
+  },
+
+  hooks: {
+    'webpack:config'(configs) {
+      configs[0]?.module?.rules?.push({
+        test: /\.ya?ml$/,
+        use: 'js-yaml-loader',
+      });
+    },
   },
 });
