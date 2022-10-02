@@ -11,14 +11,13 @@ defineProps({
 });
 
 type Emits = {
-  (name: 'onClick', event: MouseEvent): void;
+  (name: 'click', event: MouseEvent): void;
 };
 const emit = defineEmits<Emits>();
-const onClick = (e: MouseEvent) => emit('onClick', e);
 </script>
 
 <template>
-  <div class="text-button" @click="onClick">
+  <div class="text-button" @click="e => emit('click', e)">
     <v-btn rounded :color="color">
       <slot />
     </v-btn>

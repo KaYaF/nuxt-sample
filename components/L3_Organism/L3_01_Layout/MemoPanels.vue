@@ -20,22 +20,17 @@ type Emits = {
   (name: 'editMemo', memo: Memo, index: number): void;
   (name: 'deleteMemo', index: number): void;
 };
-
 const emit = defineEmits<Emits>();
 
-const createMemo = (memo: Memo) => {
+function createMemo(memo: Memo) {
   emit('createMemo', memo);
 
   for (let i = 0; i < openPanelIndexes.value.length; i++) {
     openPanelIndexes.value[i]++;
   }
-};
+}
 
-const editMemo = (memo: Memo, index: number) => {
-  emit('editMemo', memo, index);
-};
-
-const deleteMemo = (index: number) => {
+function deleteMemo(index: number) {
   emit('deleteMemo', index);
 
   for (let i = 0; i < openPanelIndexes.value.length; i++) {
@@ -46,7 +41,7 @@ const deleteMemo = (index: number) => {
       openPanelIndexes.value[i]--;
     }
   }
-};
+}
 </script>
 
 <template>
@@ -63,7 +58,7 @@ const deleteMemo = (index: number) => {
           <MemoPanel
             :index="index"
             :memo="memo"
-            @updateMemo="editMemo"
+            @updateMemo="(memo, index) => emit('editMemo', memo, index)"
             @deleteMemo="deleteMemo"
           />
         </v-col>

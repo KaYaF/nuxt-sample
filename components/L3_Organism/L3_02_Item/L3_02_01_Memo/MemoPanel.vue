@@ -16,25 +16,20 @@ const props = defineProps<Props>();
 
 const isEdit = ref<boolean>(false);
 
+function setEditMode(isEditMode: boolean) {
+  isEdit.value = isEditMode;
+}
+
 type Emits = {
   (name: 'updateMemo', memo: Memo, index: number): void;
   (name: 'deleteMemo', index: number): void;
 };
-
 const emit = defineEmits<Emits>();
 
-const updateMemo = (memo: Memo) => {
+function updateMemo(memo: Memo) {
   emit('updateMemo', memo, props.index);
   isEdit.value = false;
-};
-
-const setEditMode = (isEditMode: boolean) => {
-  isEdit.value = isEditMode;
-};
-
-const deleteMemo = () => {
-  emit('deleteMemo', props.index);
-};
+}
 </script>
 
 <template>
@@ -48,14 +43,14 @@ const deleteMemo = () => {
             v-if="isEdit"
             :memo="memo"
             @updateMemo="updateMemo"
-            @cancel="setEditMode(false)"
+            @cancel="_e => setEditMode(false)"
           >
           </MemoPanelContentEdit>
           <MemoPanelContentDefault
             v-else
             :content="memo.content"
-            @changeToEditMode="setEditMode(true)"
-            @deleteMemo="deleteMemo"
+            @changeToEditMode="_e => setEditMode(true)"
+            @deleteMemo="_e => emit('deleteMemo', props.index)"
           >
           </MemoPanelContentDefault>
         </v-expand-transition>

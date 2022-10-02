@@ -34,7 +34,7 @@ type Emits = {
 
 const emit = defineEmits<Emits>();
 
-const updateMemo = () => {
+function updateMemo() {
   editFormRef.value?.validate().then((success: boolean) => {
     if (success) {
       emit(
@@ -46,12 +46,12 @@ const updateMemo = () => {
       memoEdit.value = {title: '', content: ''};
     }
   });
-};
+}
 
-const cancel = () => {
+function cancel() {
   Object.assign(memoEdit.value, props.memo);
   emit('cancel');
-};
+}
 </script>
 
 <template>
@@ -81,11 +81,11 @@ const cancel = () => {
       </div>
       <div class="memo-panel-footer mb-2">
         <div v-if="addMode" class="d-flex justify-end">
-          <TextButton class="px-2" @onClick="updateMemo"> Create </TextButton>
+          <TextButton class="px-2" @click="updateMemo"> Create </TextButton>
         </div>
         <div v-else class="d-flex justify-end">
-          <TextButton class="px-2" @onClick="updateMemo"> Edit </TextButton>
-          <TextButton class="px-2" color="accent" @onClick="cancel">
+          <TextButton class="px-2" @click="updateMemo"> Edit </TextButton>
+          <TextButton class="px-2" color="accent" @click="cancel">
             Cancel
           </TextButton>
         </div>

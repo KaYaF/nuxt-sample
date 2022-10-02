@@ -10,16 +10,15 @@ defineNuxtComponent({
 type Emits = {
   (name: 'createMemo', memo: Memo): void;
 };
-
 const emit = defineEmits<Emits>();
 
-const createMemo = (
+function createMemo(
   memo: Memo,
   validationObserver: InstanceType<typeof ValidationObserver>
-) => {
+) {
   emit('createMemo', memo);
   validationObserver.reset();
-};
+}
 </script>
 
 <template>
