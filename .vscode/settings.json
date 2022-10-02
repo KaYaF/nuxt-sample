@@ -14,8 +14,8 @@
   "playwright.env": {
     "configPath": "./configs/playwright.config.ts"
   },
-  "eslint.format.enable": false,
+  "eslint.format.enable": true,
   "eslint.options": {
-    "configPath": "./configs/.eslintrc.js"
+    "overrideConfigFile": "./configs/.eslintrc.js"
   }
 }

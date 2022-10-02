@@ -22,15 +22,13 @@ defineProps({
 });
 
 type Emits = {
-  (name: 'onClick', event: MouseEvent): void;
+  (name: 'click', event: MouseEvent): void;
 };
 const emit = defineEmits<Emits>();
-
-const onClick = (e: MouseEvent) => emit('onClick', e);
 </script>
 
 <template>
-  <div class="mdi-icon-button" @click="onClick">
+  <div class="mdi-icon-button" @click="e => emit('click', e)">
     <v-icon
       class="icon pa-1"
       :class="'color-mode-' + colorMode"

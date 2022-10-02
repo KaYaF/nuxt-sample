@@ -11,42 +11,34 @@ type Props = {
   memos: Memo[];
 };
 
-defineProps<Props>();
+const props = defineProps<Props>();
+const {memos} = toRefs(props);
 
-const openPanelIndexes = ref<number[]>([]);
+const openPanelIndexes = computed({
+  get: () => {
+    // find open panels
+    const openPanelIndexes: number[] = [];
+    for (let i = 0; i < memos.value.length; i++) {
+      if (memos.value[i].isOpen) {
+        openPanelIndexes.push(i);
+      }
+    }
+    return openPanelIndexes;
+  },
+  set: indexes => {
+    // update isOpen property for create and delete memo
+    memos.value.forEach(memo => (memo.isOpen = false));
+    indexes.forEach(i => (memos.value[i].isOpen = true));
+    return indexes;
+  },
+});
 
 type Emits = {
   (name: 'createMemo', memo: Memo): void;
   (name: 'editMemo', memo: Memo, index: number): void;
   (name: 'deleteMemo', index: number): void;
 };
-
 const emit = defineEmits<Emits>();
-
-const createMemo = (memo: Memo) => {
-  emit('createMemo', memo);
-
-  for (let i = 0; i < openPanelIndexes.value.length; i++) {
-    openPanelIndexes.value[i]++;
-  }
-};
-
-const editMemo = (memo: Memo, index: number) => {
-  emit('editMemo', memo, index);
-};
-
-const deleteMemo = (index: number) => {
-  emit('deleteMemo', index);
-
-  for (let i = 0; i < openPanelIndexes.value.length; i++) {
-    if (openPanelIndexes.value[i] === index) {
-      openPanelIndexes.value.splice(i, 1);
-      i--;
-    } else if (openPanelIndexes.value[i] > index) {
-      openPanelIndexes.value[i]--;
-    }
-  }
-};
 </script>
 
 <template>
@@ -54,7 +46,7 @@ const deleteMemo = (index: number) => {
     <v-row justify="center" class="py-3">
       <v-expansion-panels mandatory>
         <v-col cols="12">
-          <MemoPanelAdd @createMemo="createMemo" />
+          <MemoPanelAdd @createMemo="memo => emit('createMemo', memo)" />
         </v-col>
       </v-expansion-panels>
 
@@ -63,8 +55,8 @@ const deleteMemo = (index: number) => {
           <MemoPanel
             :index="index"
             :memo="memo"
-            @updateMemo="editMemo"
-            @deleteMemo="deleteMemo"
+            @updateMemo="(memo, index) => emit('editMemo', memo, index)"
+            @deleteMemo="index => emit('deleteMemo', index)"
           />
         </v-col>
       </v-expansion-panels>

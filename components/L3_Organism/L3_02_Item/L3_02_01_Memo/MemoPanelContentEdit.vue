@@ -19,39 +19,35 @@ const props = defineProps({
     default: false,
   },
 });
+const {memo, addMode} = toRefs(props);
 
-const memoEdit = ref<Memo>(Object.assign({}, props.memo));
+const memoEdit = ref<Memo>(Object.assign({}, memo.value));
 const editFormRef = ref<InstanceType<typeof ValidationObserver>>();
 
 type Emits = {
-  (
-    name: 'updateMemo',
-    memo: Memo,
-    editForm: InstanceType<typeof ValidationObserver>
-  ): void;
+  (name: 'updateMemo', memo: Memo): void;
   (name: 'cancel'): void;
 };
 
 const emit = defineEmits<Emits>();
 
-const updateMemo = () => {
+function updateMemo() {
   editFormRef.value?.validate().then((success: boolean) => {
     if (success) {
-      emit(
-        'updateMemo',
-        Object.assign({}, memoEdit.value),
-        editFormRef.value as InstanceType<typeof ValidationObserver>
-      );
+      emit('updateMemo', Object.assign({}, memoEdit.value));
 
-      memoEdit.value = {title: '', content: ''};
+      if (addMode) {
+        memoEdit.value = {title: '', content: ''};
+        (editFormRef.value as InstanceType<typeof ValidationObserver>).reset();
+      }
     }
   });
-};
+}
 
-const cancel = () => {
-  Object.assign(memoEdit.value, props.memo);
+function cancel() {
+  Object.assign(memoEdit.value, memo);
   emit('cancel');
-};
+}
 </script>
 
 <template>
@@ -81,11 +77,11 @@ const cancel = () => {
       </div>
       <div class="memo-panel-footer mb-2">
         <div v-if="addMode" class="d-flex justify-end">
-          <TextButton class="px-2" @onClick="updateMemo"> Create </TextButton>
+          <TextButton class="px-2" @click="updateMemo"> Create </TextButton>
         </div>
         <div v-else class="d-flex justify-end">
-          <TextButton class="px-2" @onClick="updateMemo"> Edit </TextButton>
-          <TextButton class="px-2" color="accent" @onClick="cancel">
+          <TextButton class="px-2" @click="updateMemo"> Edit </TextButton>
+          <TextButton class="px-2" color="accent" @click="cancel">
             Cancel
           </TextButton>
         </div>

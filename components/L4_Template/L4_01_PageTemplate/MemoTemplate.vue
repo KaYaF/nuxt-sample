@@ -19,29 +19,16 @@ type Emits = {
   (name: 'editMemo', memo: Memo, index: number): void;
   (name: 'deleteMemo', index: number): void;
 };
-
 const emit = defineEmits<Emits>();
-
-const createMemo = (memo: Memo) => {
-  emit('createMemo', memo);
-};
-
-const editMemo = (memo: Memo, index: number) => {
-  emit('editMemo', memo, index);
-};
-
-const deleteMemo = (index: number) => {
-  emit('deleteMemo', index);
-};
 </script>
 
 <template>
   <div class="memo-template">
     <MemoPanels
       :memos="memos"
-      @createMemo="createMemo"
-      @editMemo="editMemo"
-      @deleteMemo="deleteMemo"
+      @createMemo="memo => emit('createMemo', memo)"
+      @editMemo="(memo, index) => emit('editMemo', memo, index)"
+      @deleteMemo="index => emit('deleteMemo', index)"
     />
   </div>
 </template>

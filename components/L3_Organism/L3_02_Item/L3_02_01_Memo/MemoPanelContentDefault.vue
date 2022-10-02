@@ -16,16 +16,7 @@ type Emits = {
   (name: 'changeToEditMode'): void;
   (name: 'deleteMemo'): void;
 };
-
 const emit = defineEmits<Emits>();
-
-const changeToEditMode = () => {
-  emit('changeToEditMode');
-};
-
-const deleteMemo = () => {
-  emit('deleteMemo');
-};
 </script>
 
 <template>
@@ -39,14 +30,14 @@ const deleteMemo = () => {
         <v-col cols="1">
           <MdiIconButton
             icon-name="note-edit-outline"
-            @onClick="changeToEditMode"
+            @click="_e => emit('changeToEditMode')"
           />
         </v-col>
         <v-col cols="1">
           <MdiIconButton
             icon-name="delete-outline"
             color-mode="red"
-            @onClick="deleteMemo"
+            @click="_e => emit('deleteMemo')"
           />
         </v-col>
       </v-row>
