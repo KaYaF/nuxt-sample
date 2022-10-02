@@ -1,22 +1,13 @@
 <script setup lang="ts">
 import MemoTemplate from '~/components/L4_Template/L4_01_PageTemplate/MemoTemplate.vue';
 import {Memo} from '~/types/contents/Memo';
+import {mockMemos} from '~/mocks/memos';
 
 defineNuxtComponent({
   name: 'MemoPage',
 });
 
-const memoSampleCount = 5;
-
-const memosOriginal = Array<Memo>(memoSampleCount);
-for (let i = 0; i < memoSampleCount; i++) {
-  memosOriginal[i] = {
-    title: `memo: title ${i}`,
-    content: `memo: content ${i}`,
-  };
-}
-
-const memos = ref<Array<Memo>>(memosOriginal);
+const memos = ref<Array<Memo>>(mockMemos);
 
 const createMemo = (memo: Memo) => {
   memos.value.reverse().push(memo);
