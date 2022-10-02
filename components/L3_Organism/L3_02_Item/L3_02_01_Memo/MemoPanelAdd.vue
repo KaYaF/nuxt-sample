@@ -16,7 +16,7 @@ const emit = defineEmits<Emits>();
   <div class="memo-panel-add">
     <v-expansion-panel>
       <v-expansion-panel-header expand-icon="">
-        New memo
+        {{ $vuetify.lang.t('$vuetify.L3.item.memo.memo_panel_add.new_memo') }}
       </v-expansion-panel-header>
       <v-expansion-panel-content>
         <MemoPanelContentEdit

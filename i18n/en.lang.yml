@@ -1,0 +1,13 @@
+L3:
+  item:
+    memo:
+      memo_panel_content_edit:
+        title: 'title:'
+        input_title: 'input title'
+        content: 'content:'
+        input_content: 'input content'
+        create: 'Create'
+        edit: 'Edit'
+        cancel: 'Cancel'
+      memo_panel_add:
+        new_memo: 'New memo'
