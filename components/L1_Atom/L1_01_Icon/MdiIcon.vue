@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import {defineNuxtComponent} from '@nuxt/bridge/dist/runtime';
 import {ICON_SIZE} from '~/constants/common';
 
 defineNuxtComponent({

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import {defineNuxtComponent} from '@nuxt/bridge/dist/runtime';
 import MdiIconButton from '~/components/L1_Atom/L1_02_Button/MdiIconButton.vue';
 
 defineNuxtComponent({

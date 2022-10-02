@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {defineNuxtComponent, ref, PropType} from '@nuxt/bridge/dist/runtime';
+import {PropType} from '@nuxt/bridge/dist/runtime';
 import {ValidationProvider, ValidationObserver} from 'vee-validate';
 import TextButton from '~/components/L1_Atom/L1_02_Button/TextButton.vue';
 import TitleSmall from '~/components/L1_Atom/L1_03_Text/TitleSmall.vue';
