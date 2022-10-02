@@ -13,6 +13,7 @@ type Props = {
 };
 
 const props = defineProps<Props>();
+const {index} = toRefs(props);
 
 const isEdit = ref<boolean>(false);
 
@@ -27,7 +28,7 @@ type Emits = {
 const emit = defineEmits<Emits>();
 
 function updateMemo(memo: Memo) {
-  emit('updateMemo', memo, props.index);
+  emit('updateMemo', memo, index.value);
   isEdit.value = false;
 }
 </script>
@@ -50,7 +51,7 @@ function updateMemo(memo: Memo) {
             v-else
             :content="memo.content"
             @changeToEditMode="_e => setEditMode(true)"
-            @deleteMemo="_e => emit('deleteMemo', props.index)"
+            @deleteMemo="_e => emit('deleteMemo', index)"
           >
           </MemoPanelContentDefault>
         </v-expand-transition>

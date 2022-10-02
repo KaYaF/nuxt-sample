@@ -12,7 +12,6 @@ type Props = {
 };
 
 const props = defineProps<Props>();
-
 const {memos} = toRefs(props);
 
 const openPanelIndexes = computed({

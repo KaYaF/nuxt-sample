@@ -11,12 +11,13 @@ const props = defineProps({
     default: null,
   },
 });
+const {error} = toRefs(props);
 
 const pageNotFound = '404 Not Found';
 const otherError = 'An error occurred';
 
 useNuxt2Meta({
-  title: props.error.statusCode === 404 ? pageNotFound : otherError,
+  title: error.value.statusCode === 404 ? pageNotFound : otherError,
 });
 </script>
 

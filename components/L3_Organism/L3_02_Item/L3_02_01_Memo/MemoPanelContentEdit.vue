@@ -19,8 +19,9 @@ const props = defineProps({
     default: false,
   },
 });
+const {memo, addMode} = toRefs(props);
 
-const memoEdit = ref<Memo>(Object.assign({}, props.memo));
+const memoEdit = ref<Memo>(Object.assign({}, memo.value));
 const editFormRef = ref<InstanceType<typeof ValidationObserver>>();
 
 type Emits = {
@@ -49,7 +50,7 @@ function updateMemo() {
 }
 
 function cancel() {
-  Object.assign(memoEdit.value, props.memo);
+  Object.assign(memoEdit.value, memo);
   emit('cancel');
 }
 </script>
