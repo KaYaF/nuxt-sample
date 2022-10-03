@@ -78,9 +78,11 @@ export default defineNuxtConfig({
 
   hooks: {
     'webpack:config'(configs) {
-      configs[0]?.module?.rules?.push({
-        test: /\.ya?ml$/,
-        use: 'js-yaml-loader',
+      configs.forEach(config => {
+        config.module?.rules?.push({
+          test: /\.ya?ml$/,
+          use: 'js-yaml-loader',
+        });
       });
     },
   },
