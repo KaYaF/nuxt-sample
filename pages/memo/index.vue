@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import MemoTemplate from '~/components/L4_Template/L4_01_PageTemplate/MemoTemplate.vue';
-import {Memo} from '~/types/contents/Memo';
 import {mockMemos} from '~/mocks/memos';
+import {Memo} from '~/types/contents/Memo';
 
 defineNuxtComponent({
   name: 'MemoPage',

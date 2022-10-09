@@ -12,6 +12,7 @@ module.exports = {
     'plugin:nuxt/recommended',
     'prettier',
   ],
+  plugins: ['import', 'unused-imports'],
   rules: {
     '@typescript-eslint/no-empty-function': 'off',
     'no-useless-constructor': 'off',
@@ -27,5 +28,25 @@ module.exports = {
     'no-debugger': 2,
     'no-dupe-else-if': 2,
     'no-inner-declarations': 2,
+    'no-unused-vars': 2,
+    '@typescript-eslint/no-unused-vars': 'off',
+    'unused-imports/no-unused-imports': 2,
+    'import/order': [
+      2,
+      {
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index',
+          'object',
+          'type',
+        ],
+        pathGroupsExcludedImportTypes: ['builtin'],
+        alphabetize: {order: 'asc', caseInsensitive: true},
+      },
+    ],
   },
 };

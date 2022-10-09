@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import {Memo} from '~/types/contents/Memo';
 import MemoPanel from '../L3_02_Item/L3_02_01_Memo/MemoPanel.vue';
 import MemoPanelAdd from '../L3_02_Item/L3_02_01_Memo/MemoPanelAdd.vue';
-import {Memo} from '~/types/contents/Memo';
 
 defineNuxtComponent({
   name: 'MemoPanels',
