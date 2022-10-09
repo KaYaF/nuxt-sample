@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import MemoPanelContentEdit from './MemoPanelContentEdit.vue';
 import {Memo} from '~/types/contents/Memo';
+import MemoPanelContentEdit from './MemoPanelContentEdit.vue';
 
 defineNuxtComponent({
   name: 'MemoPanelAdd',
