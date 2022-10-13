@@ -36,7 +36,7 @@
     "nuxt-edge": "latest",
     "vee-validate": "<4.0.0",
     "vue": "^2.7.10",
-    "vue-server-renderer": "^2.7.10",
+    "vue-server-renderer": "^2.7.12",
     "vue-template-compiler": "^2.7.10",
     "vuetify": "^2.6.11",
     "webpack": "^5.74.0"
