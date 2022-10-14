@@ -35,9 +35,9 @@
     "js-yaml-loader": "^1.2.2",
     "nuxt-edge": "latest",
     "vee-validate": "<4.0.0",
-    "vue": "^2.7.10",
+    "vue": "^2.7.13",
     "vue-server-renderer": "^2.7.10",
-    "vue-template-compiler": "^2.7.10",
+    "vue-template-compiler": "^2.7.13",
     "vuetify": "^2.6.11",
     "webpack": "^5.74.0"
   },
