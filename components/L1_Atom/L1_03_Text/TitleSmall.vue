@@ -20,5 +20,7 @@ defineProps({
 </template>
 
 <style lang="scss" scoped>
-@import '~/assets/scss/Text/TextSize.scss';
+.fs-14 {
+  font-size: 14px;
+}
 </style>

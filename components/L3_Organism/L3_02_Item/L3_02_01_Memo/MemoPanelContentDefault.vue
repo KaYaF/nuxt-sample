@@ -24,23 +24,17 @@ const emit = defineEmits<Emits>();
     <div class="memo-panel-content">
       {{ content }}
     </div>
-    <div class="memo-panel-footer">
-      <v-row>
-        <v-spacer />
-        <v-col cols="1">
-          <MdiIconButton
-            icon-name="note-edit-outline"
-            @click="_e => emit('changeToEditMode')"
-          />
-        </v-col>
-        <v-col cols="1">
-          <MdiIconButton
-            icon-name="delete-outline"
-            color-mode="red"
-            @click="_e => emit('deleteMemo')"
-          />
-        </v-col>
-      </v-row>
+    <div class="memo-panel-footer d-flex justify-end">
+      <MdiIconButton
+        class="mr-8"
+        icon-name="note-edit-outline"
+        @click="_e => emit('changeToEditMode')"
+      />
+      <MdiIconButton
+        icon-name="delete-outline"
+        color-mode="red"
+        @click="_e => emit('deleteMemo')"
+      />
     </div>
   </div>
 </template>
