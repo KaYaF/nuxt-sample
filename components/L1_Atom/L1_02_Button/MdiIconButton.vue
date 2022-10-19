@@ -41,5 +41,24 @@ const emit = defineEmits<Emits>();
 </template>
 
 <style lang="scss" scoped>
-@import '~/assets/scss/Button/MdiButton.scss';
+.mdi-icon-button {
+  .icon {
+    color: $common-color0;
+    border-radius: 50%;
+  }
+
+  :hover {
+    cursor: pointer;
+
+    &.color-mode-blue {
+      color: $common-color1;
+      background-color: $common-color2;
+    }
+
+    &.color-mode-red {
+      color: $common-color3;
+      background-color: $common-color4;
+    }
+  }
+}
 </style>
