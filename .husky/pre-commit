@@ -2,4 +2,8 @@
 . "$(dirname "$0")/_/husky.sh"
 . "$(dirname "$0")/common.sh"
 
+# if you get `pre-commit hook exited with code 127 (error)`,
+# try to create .huskyrc on the home directory (not project root directory) and write
+# export PATH="(result of the which node where remove 'node' at last):$PATH"
+# We may get the above error when we use the fGit clien. on the MAC PC.
 yarn lint-staged
